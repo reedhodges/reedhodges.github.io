@@ -4,7 +4,7 @@ title: Publications
 permalink: /publications/
 ---
 
-For a more detailed list of publications, see [my INSPIRE-HEP page](https://inspirehep.net/authors/1920819).
+For a more detailed list of my hep publications, see [my INSPIRE-HEP page](https://inspirehep.net/authors/1920819).
 
 1. L. Dai, S. Fleming, R. Hodges, & T. Mehen (2023). Strong decays of T<sub>cc</sub><sup>+</sup> at NLO in an effective field theory. [\[arXiv\]](https://arxiv.org/abs/2301.11950)
 2. S. Fleming, R. Hodges, & T. Mehen (2021). T<sub>cc</sub><sup>+</sup> decays: Differential spectra and two-body final states. *Phys. Rev. D* **104** 11, 116010. [\[doi\]](https://doi.org/10.1103/PhysRevD.104.116010) [\[arXiv\]](https://arxiv.org/abs/2109.02188)
