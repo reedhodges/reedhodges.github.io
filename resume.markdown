@@ -11,14 +11,14 @@ Ph.D. in Physics
 Concentration: Theoretical Nuclear/Particle Physics
 *Duke University, expected 2024*
 
-</br>
+<br />
 
 B.S. in Physics
 
 Minor: Mathematics
 *Georgia Southern University, 2018*
 
-</br>
+<br />
 
 **Relevant Experience**
 
@@ -31,7 +31,7 @@ Graduate Research Assistant
 - Presented my research at many conferences & seminars
 - Junior member of the HEFTY Collaboration, a theoretical nuclear physics research collaboration funded by the U.S. Department of Energy
 
-</br>
+<br />
 
 Graduate Teaching Assistant
 
@@ -39,7 +39,7 @@ Graduate Teaching Assistant
 - Grader for graduate physics courses
 - Lab instructor for introductory undergraduate physics
 
-</br>
+<br />
 
 Undergraduate Research Assistant
 
@@ -49,7 +49,7 @@ Undergraduate Research Assistant
 - Published papers in peer-reviewed journals
 - Presented my research at various conferences 
 
-</br>
+<br />
 
 Blue Waters Petascale Computing Intern
 
@@ -57,7 +57,7 @@ Blue Waters Petascale Computing Intern
 - Attended school on parallel computing at the National Center for Supercomputing Applications in Champaign, IL
 - Applied parallel computing to my undergraduate research, running programs on the Blue Waters supercomputer
 
-</br>
+<br />
 
 **Skills**
 Python, C, Fortran, Mathematica, MATLAB, AWS, Quantitative Reasoning, Scientific Research, Teamwork
