@@ -12,4 +12,6 @@ One of the processes in which a J/psi can be produced is called semi-inclusive d
 
 Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in "parton distribution functions", or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
 
-![PDFs Plot](https://github.com/reedhodges/portfolio_Jpsi/blob/main/figures/pdfs-fig.png)
+Here is a plot that shows the PDFs, f(x), as a function of the fraction of the proton's momentum, x.  There are three types of partons plotted here: up quark, down quark, and gluon.
+
+![PDFs Plot](https://github.com/reedhodges/portfolio_Jpsi/blob/c784320a21f5fcc6f5e2278cec5adece72be6c2a/figures/pdfs-fig.png)
