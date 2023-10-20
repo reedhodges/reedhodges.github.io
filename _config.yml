@@ -33,18 +33,10 @@ theme: minima
 plugins:
   - jekyll-feed
 
-navbar_links:
-  - title: Home
-    url: /
-  - title: My Research
-    url: /my-research/
-  - title: Publications
-    url: /publications/
-  - title: J/psi production project
-    url: /Jpsi-production-project/
-  - title: PDFs
-    url: /Jpsi-production-project/PDFs
-    exclude: true
+header_pages:
+  - myresearch.markdown
+  - publications.markdown
+  - J_psi_production_project.markdown
 
 # Exclude from processing.
 # The following items will not be processed, by default.
