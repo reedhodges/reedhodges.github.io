@@ -14,7 +14,7 @@ permalink: /projects/
 Below I briefly discuss my various research projects over the course of my studies, listing their key accomplishments. More information about my publications can be found on [my INSPIRE-HEP page](https://inspirehep.net/authors/1920819) or [my Google Scholar page](https://scholar.google.com/citations?user=gZonGgEAAAAJ&hl=en).
 
 
-1. *Transverse momentum dependence in J/psi production*
+1) *Transverse momentum dependence in J/psi production*
 
 Collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen
 
@@ -26,7 +26,7 @@ We wrote two papers, broadly about transverse momentum dependence in J/psi produ
 - We compared the production of J/psi via quark fragmentation and photon-gluon fusion in different regions of phase space, to identify regimes to extract gluon TMDs and the color octet <sup>3</sup>S<sub>1</sub> matrix element
 
 
-2. *Decays of the exotic meson T<sub>cc</sub><sup>+</sup>*
+2) *Decays of the exotic meson T<sub>cc</sub><sup>+</sup>*
 
 Collaborators: Lin Dai, Sean Fleming, Thomas Mehen
 
@@ -38,7 +38,7 @@ We wrote two papers on the decay of the T<sub>cc</sub><sup>+</sup> exotic meson,
 - We cast doubt on the existence of a shallow bound state of pseudoscalar charm mesons, to which the T<sub>cc</sub><sup>+</sup> could decay
 
 
-3. *Invisibility of a metamaterial microsphere*
+3) *Invisibility of a metamaterial microsphere*
 
 Collaborators: Cleon Dean, Maxim Durach, Kelvin Rosado-Ayala
 
