@@ -16,4 +16,4 @@ Here is a plot that shows the PDFs, f(x), as a function of the fraction of the p
 
 ![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
 
-![Next >](/Jpsi-production-project/PDFs)
+[Next >](PDFs.markdown)
