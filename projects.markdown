@@ -8,11 +8,13 @@ permalink: /projects/
 
 - [J/psi production](J_psi_production_project.markdown).  A work-in-progress project attempting to learn about the phase space of various J/psi production mechanisms using basic machine learning techniques.
 
+</br>
 
 **Academic research**
 
 Below I briefly discuss my various research projects over the course of my studies, listing their key accomplishments. More information about my publications can be found on [my INSPIRE-HEP page](https://inspirehep.net/authors/1920819) or [my Google Scholar page](https://scholar.google.com/citations?user=gZonGgEAAAAJ&hl=en).
 
+</br>
 
 1) *Transverse momentum dependence in J/psi production*
 
@@ -25,6 +27,7 @@ We wrote two papers, broadly about transverse momentum dependence in J/psi produ
 - We derived cross sections for unpolarized, longitudinally polarized, and transversely polarized J/psi production via color octet photon-gluon fusion, using NRQCD factorization
 - We compared the production of J/psi via quark fragmentation and photon-gluon fusion in different regions of phase space, to identify regimes to extract gluon TMDs and the color octet <sup>3</sup>S<sub>1</sub> matrix element
 
+</br>
 
 2) *Decays of the exotic meson T<sub>cc</sub><sup>+</sup>*
 
@@ -37,6 +40,7 @@ We wrote two papers on the decay of the T<sub>cc</sub><sup>+</sup> exotic meson,
 - The agreement of data with our effective field theory model suggest a molecular interpretation for the meson
 - We cast doubt on the existence of a shallow bound state of pseudoscalar charm mesons, to which the T<sub>cc</sub><sup>+</sup> could decay
 
+</br>
 
 3) *Invisibility of a metamaterial microsphere*
 
