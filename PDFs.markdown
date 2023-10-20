@@ -1,6 +1,6 @@
 ---
 layout: Subpage
-title: J/psi production project
+title: PDFs
 permalink: /Jpsi-production-project/PDFs
 ---
 
