@@ -14,4 +14,4 @@ Why might we be interested in this?  Well, clearly the problem depends on unders
 
 Here is a plot that shows the PDFs, f(x), as a function of the fraction of the proton's momentum, x.  There are three types of partons plotted here: up quark, down quark, and gluon.
 
-![PDFs Plot](https://github.com/reedhodges/portfolio_Jpsi/blob/c784320a21f5fcc6f5e2278cec5adece72be6c2a/figures/pdfs-fig.png)
+![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
