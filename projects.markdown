@@ -6,7 +6,7 @@ permalink: /projects/
 
 **Python project**
 
-- [J/psi production](J_psi_production_project.markdown).  A work-in-progress project attempting to learn about the phase space of various J/psi production mechanisms using basic machine learning techniques.
+- [J/psi production](proj-1.markdown).  A work-in-progress project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
 
 <br />
 

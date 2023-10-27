@@ -4,7 +4,7 @@ title: J/psi production project
 permalink: /Jpsi-production-project/
 ---
 
-**Introduction**
+**Introduction** &emsp; &emsp; &emsp; [Next >](proj-2.markdown)
 
 The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
 
@@ -12,8 +12,6 @@ One of the processes in which a J/psi can be produced is called semi-inclusive d
 
 Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in "parton distribution functions", or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
 
-Here is a plot that shows the PDFs, f(x), as a function of the fraction of the proton's momentum, x.  There are three types of partons plotted here: up quark, down quark, and gluon.
+The repository for this project can be found [here](https://github.com/reedhodges/portfolio_Jpsi).
 
-![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
-
-[Next >](PDFs.markdown)
+[Next >](proj-2.markdown)
