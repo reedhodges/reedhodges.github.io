@@ -6,7 +6,7 @@ permalink: /Jpsi-production-project/data-acquisition-cleaning
 
 ## Data Acquisition and Cleaning
 
-[< Prev](proj-2.markdown) | [Next >](proj-4.markdown)
+[< Prev](proj-2.markdown) &emsp; [Next >](proj-4.markdown)
 
 # PDFs
 
@@ -35,6 +35,6 @@ def create_interpolator(df):
     return RegularGridInterpolator((x_values, Q_values), f_values, method='linear')
 ```
 
-Here is a plot that shows the momentum fraction times the PDFs, _x*f(x)_, as a funcion of _x_.  There are three types of partons plotted here: up quark, down quark, and gluon.
+Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as a funcion of _x_.  There are three types of partons plotted here: up quark, down quark, and gluon.
 
 ![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)

@@ -5,13 +5,11 @@ permalink: /Jpsi-production-project/objectives
 ---
 
 ## Project Objectives
-[< Prev](proj-1.markdown) | [Next >](proj-3.markdown)
+[< Prev](proj-1.markdown) &emsp; [Next >](proj-3.markdown)
 
 ### Overview
 
-In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to predict and identify regions in phase space where cross sections are significant.
-
-Disclaimer: this is a toy project, intended as a way for me to build and exemplify skills in Python and machine learning, and not intended to be a proper scientific study.  I utilize actual expressions for the cross sections derived by me and my collaborators in two papers [[1](https://arxiv.org/pdf/2308.08605),[2](https://arxiv.org/pdf/2310.13737)] published in 2023, but I make no claims of scientific rigor in the scikit-learn analysis.   
+In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to predict and identify regions in phase space where cross sections are significant. 
 
 ### Specific Goals
 
