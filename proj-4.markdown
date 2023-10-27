@@ -4,4 +4,4 @@ title: J/psi production project
 permalink: /Jpsi-production-project/exploratory-data-analysis
 ---
 
-**Exploratory Data Analysis** &emsp; &emsp; &emsp; [< Prev](proj-3.markdown)[Next >](proj-5.markdown)
+**Exploratory Data Analysis** &emsp; &emsp; &emsp; [< Prev](proj-3.markdown) | [Next >](proj-5.markdown)
