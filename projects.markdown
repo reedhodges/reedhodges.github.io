@@ -6,7 +6,7 @@ permalink: /projects/
 
 # Portfolio projects
 
-# [J/psi production](proj-1.markdown)
+## [J/psi production](proj-1.markdown)
 A work-in-progress project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
 - [Introduction](proj-1.markdown)
 - [Objectives](proj-2.markdown)
