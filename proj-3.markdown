@@ -38,3 +38,7 @@ def create_interpolator(df):
 Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as a funcion of _x_.  There are three types of partons plotted here: up quark, down quark, and gluon.
 
 ![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
+
+---
+
+[< Prev](proj-2.markdown)  &emsp; [Next >](proj-4.markdown)

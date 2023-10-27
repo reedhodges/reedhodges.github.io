@@ -32,6 +32,7 @@ Understanding regions of phase space where cross sections are significant has wi
 - **Testing Theory:** Assists researchers in validating or refuting theoretical models.
 - **Advancing Physics:** Understanding particle interactions can lead to new discoveries.
 
+---
 
-[< Prev](proj-1.markdown) | [Next >](proj-3.markdown)
+[< Prev](proj-1.markdown)  &emsp; [Next >](proj-3.markdown)
 
