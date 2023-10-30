@@ -30,7 +30,7 @@ Below I briefly discuss my various research projects over the course of my studi
 
 Collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen
 
-Github repositories: [(1)](https://github.com/reedhodges/JPsi_TMDFFs), [(2)](https://github.com/reedhodges/JPsi_Production_NRQCD)
+Github repositories: [[1](https://github.com/reedhodges/JPsi_TMDFFs), [2](https://github.com/reedhodges/JPsi_Production_NRQCD)]
 
 We wrote two papers, broadly about transverse momentum dependence in J/psi production. 
 - We calculated for the first time the 36 spin-dependent quark and gluon fragmentation functions at leading order in the strong coupling 

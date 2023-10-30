@@ -27,7 +27,7 @@ Export[NotebookDirectory[]<>"pdf_data/dPDF.csv",dPDF]
 
 Each PDF is evaluated for 200<sup>2</sup> = 40,000 points.  The `.csv` files can be imported as a pandas DataFrame, and we can use `scipy` to create an interpolator for other values of *x* and *Q*.
 
-```
+```python
 def create_interpolator(df):
     x_values = sorted(df['x'].unique())
     Q_values = sorted(df['Q'].unique())
