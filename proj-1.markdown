@@ -4,6 +4,19 @@ title: J/psi production project
 permalink: /Jpsi-production-project/
 ---
 
+**Disclaimer:** This is a toy project, intended as a way for me to build and exemplify skills in Python and machine learning, and not intended to be a proper scientific study.  I utilize actual expressions for the cross sections derived by me and my collaborators in two papers [[1](https://arxiv.org/pdf/2308.08605),[2](https://arxiv.org/pdf/2310.13737)] published in 2023, but I make no claims of scientific rigor in the scikit-learn analysis.  Furthermore, this project is a work-in-progress and I will continue to make updates/improvements as I learn more and improve my skills.
+
+## Outline
+
+- [Introduction](proj-1.markdown)
+- [Objectives](proj-2.markdown)
+- [Data Acquisition and Cleaning](proj-3.markdown)
+- [Exploratory Data Analysis](proj-4.markdown)
+- [Feature Engineering and Selection](proj-5.markdown)
+- [Model Development with scikit-learn](proj-6.markdown)
+- [Results and Findings](proj-7.markdown)
+- [Conclusion](proj-8.markdown)
+
 ## Introduction
 [Next >](proj-2.markdown)
 
@@ -14,7 +27,5 @@ One of the processes in which a J/psi can be produced is called semi-inclusive d
 Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in *parton distribution functions*, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
 
 The repository for this project can be found [here](https://github.com/reedhodges/portfolio_Jpsi).
-
-**Disclaimer:** this is a toy project, intended as a way for me to build and exemplify skills in Python and machine learning, and not intended to be a proper scientific study.  I utilize actual expressions for the cross sections derived by me and my collaborators in two papers [[1](https://arxiv.org/pdf/2308.08605),[2](https://arxiv.org/pdf/2310.13737)] published in 2023, but I make no claims of scientific rigor in the scikit-learn analysis.  
 
 [Next >](proj-2.markdown)

@@ -5,7 +5,6 @@ permalink: /Jpsi-production-project/objectives
 ---
 
 ## Project Objectives
-[< Prev](proj-1.markdown) &emsp; [Next >](proj-3.markdown)
 
 ### Overview
 

@@ -6,8 +6,6 @@ permalink: /Jpsi-production-project/data-acquisition-cleaning
 
 ## Data Acquisition and Cleaning
 
-[< Prev](proj-2.markdown) &emsp; [Next >](proj-4.markdown)
-
 # PDFs
 
 The most fundamental type of data we will be using are derived from *parton distribution functions*, or PDFs.  These are probability distributions that are a function of the fraction *x* of the proton's momentum carried by the parton, and a particular energy scale in the problem *Q*.  In practice, the PDFs are obtained by fitting to experimental data, which is done by different collaborations of scientists.  The collaborations then publish their fits for use by other researchers.  

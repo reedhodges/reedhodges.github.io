@@ -5,7 +5,6 @@ permalink: /Jpsi-production-project/model-development
 ---
 
 ## Model Development with scikit-learn
-[< Prev](proj-5.markdown) | [Next >](proj-7.markdown)
 
 ### Model Choice: Random Forest Regressor
 
@@ -58,3 +57,7 @@ Importance of PT: 0.11730873467897507
 ```
 
 This feature importance analysis can guide further feature engineering or even experimental design, shedding light on which phase space variables play a critical role in determining cross sections.
+
+---
+
+[< Prev](proj-5.markdown)  &emsp; [Next >](proj-7.markdown)
