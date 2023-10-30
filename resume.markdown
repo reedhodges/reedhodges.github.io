@@ -4,6 +4,8 @@ title: Resume
 permalink: /resume/
 ---
 
+[PDF Form](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/ReedHodges_Resume.pdf)
+
 ## Education
 
 ### Ph.D. in Physics

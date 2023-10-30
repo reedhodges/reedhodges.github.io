@@ -36,28 +36,6 @@ rf = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
 rf.fit(X_train, y_train.values.ravel())
 ```
 
-### Model Evaluation
-
-Model performance was evaluated using the mean squared error (MSE) metric for both training and test data.
-
-```
-Training MSE: 0.0005671118252182426
-Test MSE: 0.0005891680348386154
-```
-
-### Feature Importance
-
-One of the significant advantages of using Random Forest is its ability to provide insights into which features are more influential in making predictions.  Below are the feature importances:
-
-```
-Importance of x: 0.6807263601754133
-Importance of z: 0.006080546460394571
-Importance of Q: 0.19588435868521697
-Importance of PT: 0.11730873467897507
-```
-
-This feature importance analysis can guide further feature engineering or even experimental design, shedding light on which phase space variables play a critical role in determining cross sections.
-
 ---
 
 [< Prev](proj-5.markdown)  &emsp; [Next >](proj-7.markdown)
