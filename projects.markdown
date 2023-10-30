@@ -8,15 +8,6 @@ permalink: /projects/
 
 ### [J/psi production](proj-1.markdown)
 A **work-in-progress** project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
-- [Introduction](proj-1.markdown)
-- [Objectives](proj-2.markdown)
-- [Data Acquisition and Cleaning](proj-3.markdown)
-- [Exploratory Data Analysis](proj-4.markdown)
-- [Feature Engineering and Selection](proj-5.markdown)
-- [Model Development with scikit-learn](proj-6.markdown)
-- [Results and Findings](proj-7.markdown)
-- [Conclusion](proj-8.markdown)
-
 
 <br />
 
