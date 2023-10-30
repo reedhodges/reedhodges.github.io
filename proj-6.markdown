@@ -38,4 +38,4 @@ rf.fit(X_train, y_train.values.ravel())
 
 ---
 
-[< Prev](proj-5.markdown)  &emsp; [Next >](proj-7.markdown)
+[< Prev](proj-4.markdown)  &emsp; [Next >](proj-7.markdown)

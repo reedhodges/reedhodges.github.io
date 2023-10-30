@@ -13,3 +13,4 @@ Calculations in quantum field theory can be quite involved.  Calculus, linear al
 My collaborators and I wrote two papers on J/psi production in an effective field theory called NRQCD.  The calculational work primarily focuses on the evaluation of Feynman diagrams, which are visual representations of a the interactions of subatomic particles.  Feynman diagrams have a mathematical expression associated with them, which contribute to the probability of that process occuring.
 
 Below I outline some of the code we used to help evaluate a Feynman diagram, as well as produce plots that visualize our results.  The code was written in close collaboration with co-author Marston Copeland.
+

@@ -12,7 +12,6 @@ permalink: /Jpsi-production-project/
 - [Objectives](proj-2.markdown)
 - [Data Acquisition and Cleaning](proj-3.markdown)
 - [Exploratory Data Analysis](proj-4.markdown)
-- [Feature Engineering and Selection](proj-5.markdown)
 - [Model Development with scikit-learn](proj-6.markdown)
 - [Results and Findings](proj-7.markdown)
 - [Conclusion](proj-8.markdown)

@@ -9,13 +9,13 @@ permalink: /resume/
 ## Education
 
 ### Ph.D. in Physics
-Concentration: Theoretical Nuclear/Particle Physics
+Concentration: Theoretical Nuclear/Particle Physics,
 *Duke University, expected 2024*
 
 <br />
 
 ### B.S. in Physics
-Minor: Mathematics
+Minor: Mathematics,
 *Georgia Southern University, 2018*
 
 <br />

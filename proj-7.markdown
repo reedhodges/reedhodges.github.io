@@ -30,7 +30,7 @@ From the above, we can deduce:
 - **Q** and **PT** also have considerable importances with around 19.59% and 11.73% respectively.
 - **z**, on the other hand, appears to have a minor role with an importance of just about 0.61%.
 
-Recall that *x* represents the fraction of the proton's momentum carried by the struck quark, *z* denotes the fraction of the quark's momentum transferred to the hadron, and *Q* stands for the momentum transfer's scale or the virtual photon's virtuality. The significant importance of *X* in our findings highlights the dominant role the struck quark's momentum fraction plays in determining the phase space regions. Collectively, understanding the significance and interplay of these parameters can provide a richer comprehension of QCD phenomena and the underlying mechanisms of hadronic interactions.
+Recall that, in the appropriate references frames, *x* represents the fraction of the proton's momentum carried by the struck quark, *z* denotes the ratio of the energy of the J/psi to the energy of the virtual photon, and *Q* stands for the momentum transfer's scale or the virtual photon's virtuality. The significant importance of *x* in our findings highlights the dominant role the struck quark's momentum fraction plays in determining the phase space regions. Collectively, understanding the significance and interplay of these parameters can provide a richer comprehension of QCD phenomena and the underlying mechanisms of hadronic interactions.
 
 ---
 

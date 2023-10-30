@@ -8,13 +8,13 @@ permalink: /Jpsi-production-project/objectives
 
 ### Overview
 
-In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to predict and identify regions in phase space where cross sections are significant. 
+In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to learn more about the kinematic parameters for J/psi production cross sections.
 
 ### Specific Goals
 
-1. **Data Collection and Preprocessing:** Acquire a comprehensive dataset that encapsulates key variables and parameters that influence phase space cross sections.
-2. **Feature Identification:** Pinpoint the most salient features that have a potential impact on the magnitude of cross sections.
-3. **Predictive Modeling:** Identify a machine learning model capable of accurately predicting regions of phase space where cross sections are large.
+1. **Data Collection and Preprocessing:** Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.
+2. **Feature Identification:** Pinpoint the most salient features that have a potential impact on the magnitude of the cross sections.
+3. **Predictive Modeling:** Identify a machine learning model capable of accurately predicting regions of phase space wher the cross sections are large.
 4. **Model Validation:** Ensure the model is both accurate and robust through rigorous testing and validation.
 
 ### Challenges
