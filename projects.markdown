@@ -15,6 +15,12 @@ Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
 
 <br />
 
+### 1. [SQL basketball stats project](sql-proj.markdown)
+
+Github repository: [[1](https://github.com/reedhodges/bball_league)]
+
+<br />
+
 ### 2. [Transverse momentum dependence in J/psi production](mathematica-proj.markdown)
 
 Collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen
