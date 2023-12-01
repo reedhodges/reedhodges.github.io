@@ -127,7 +127,7 @@ class game:
 The ```game``` class also keeps track of each team's win-loss-draw record.
 
 ```python
-class game
+class game:
     ...
     def win_loss(self):
             team1_pts = np.sum(self.team1_box[:, 0])
