@@ -16,6 +16,7 @@ Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
 <br />
 
 ### 1. [SQL basketball stats project](sql-proj.markdown)
+A **work-in-progress** portfolio project where I generate statistics for a fake basketball league in Python, and run SQL queries against the resulting data.
 
 Github repository: [[1](https://github.com/reedhodges/bball_league)]
 
