@@ -4,7 +4,7 @@ title: SQL basketball stats project
 permalink: /sql-project/
 ---
 
-## Dataset
+## <ins>Dataset</ins>
 
 Recently I wanted to learn how to run SQL queries.  In deciding which data to use, I wanted a dataset where I'd have some level of intuition for what the data points mean.  An obvious choice is sports statistics, and basketball is the sport with which I'm most familiar.  
 
@@ -224,11 +224,11 @@ df_attributes.to_csv('player_attributes.csv', index=False)
 
 All of the data is then ready to upload to a SQL database.
 
-## Setting up the SQL database
+## <ins>Setting up the SQL database</ins>
 
 I used Amazon Web Services' RDS to host the database, and the free software DBeaver as the SQL client.  Uploading the data from the csv files and setting up the tables was straightforward using these.
 
-## SQL queries
+## <ins>SQL queries</ins>
 
 As an example query, we can look for the instances where a player under 190.5 cm in height scored more than 30 points, and list those players by the number of times they achieved this feat.
 

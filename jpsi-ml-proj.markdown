@@ -6,7 +6,7 @@ permalink: /Jpsi-production-project/
 
 <span style="color:red">**Disclaimer:**</span> This is a toy project, intended as a way for me to build and exemplify skills in Python and machine learning, and not intended to be a proper scientific study.  I utilize actual expressions for the cross sections derived by me and my collaborators in two papers [[1](https://arxiv.org/pdf/2308.08605),[2](https://arxiv.org/pdf/2310.13737)] published in 2023, but I make no claims of scientific rigor in the scikit-learn analysis.  Furthermore, this project is a work-in-progress and I will continue to make updates/improvements as I learn more and improve my skills.
 
-## Introduction
+## <ins>Introduction</ins>
 
 The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
 
@@ -16,7 +16,7 @@ Why might we be interested in this?  Well, clearly the problem depends on unders
 
 The repository for this project can be found [here](https://github.com/reedhodges/portfolio_Jpsi).
 
-## Project Objectives
+## <ins>Project Objectives</ins>
 
 ### Overview
 
@@ -43,7 +43,7 @@ Understanding regions of phase space where cross sections are significant has wi
 - **Testing Theory:** Assists researchers in validating or refuting theoretical models.
 - **Advancing Physics:** Understanding particle interactions can lead to new discoveries.
 
-## Data Acquisition and Cleaning
+## <ins>Data Acquisition and Cleaning</ins>
 
 # PDFs
 
@@ -76,7 +76,7 @@ Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as
 
 ![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
 
-## Exploratory Data Analysis
+## <ins>Exploratory Data Analysis</ins>
 
 The initial exploratory data analysis for this project was done in a [paper](https://arxiv.org/pdf/2310.13737) published by me and my collaborators.  Look at Figure 4 from that paper:
 
@@ -87,11 +87,11 @@ Here, we are plotting the cross section (\[sigma]) differential in the transvers
 - If you are interested in production via a gluon, look at larger values of *z*, but smaller values of *x* and *Q*
 - If you are interested in production via a quark, look at larger values of *x*
 
-## Feature Engineering and Selection
+## <ins>Feature Engineering and Selection</ins>
 **in progress**
 
 
-## Model Development with scikit-learn
+## <ins>Model Development with scikit-learn</ins>
 
 ### Model Choice: Random Forest Regressor
 
@@ -123,7 +123,7 @@ rf = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
 rf.fit(X_train, y_train.values.ravel())
 ```
 
-## Results and Findings
+## <ins>Results and Findings</ins>
 
 ### Model Performance
 
@@ -151,7 +151,7 @@ From the above, we can deduce:
 
 Recall that, in the appropriate references frames, *x* represents the fraction of the proton's momentum carried by the struck quark, *z* denotes the ratio of the energy of the J/psi to the energy of the virtual photon, and *Q* stands for the momentum transfer's scale or the virtual photon's virtuality. The significant importance of *x* in our findings highlights the dominant role the struck quark's momentum fraction plays in determining the phase space regions. Collectively, understanding the significance and interplay of these parameters can provide a richer comprehension of QCD phenomena and the underlying mechanisms of hadronic interactions.
 
-## Conclusion
+## <ins>Conclusion</ins>
 
 ### Reflecting on Objectives
 
