@@ -8,9 +8,59 @@ permalink: /sql-project/
 
 Recently I wanted to learn how to run SQL queries.  In deciding which data to use, I wanted a dataset where I'd have some level of intuition for what the data points mean.  An obvious choice is sports statistics, and basketball is the sport with which I'm most familiar.  
 
-Instead of scraping data from another website or using an API, I decided this would be a good opportunity to further practice my python skills.  I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.
+I decided this also would be a good opportunity to further practice my python skills, so I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.
 
-The python libraries used are as follows:
+I want the simulated basketball games to be as close to reality as possible, so first let's do some exploratory data analysis using a Kaggle dataset of real NBA games.  The dataset I start with has 5 csv files: teams, players, games, games_details, and ranking.  They all contain multiple columns of data, for example:
+
+- teams.csv: founding year, mascot, arena name, owner name, etc.
+- players.csv: player name, player ID, etc.
+- games.csv: game date, team IDs, stats for each team, etc.
+- games_details.csv: box scores for each game
+- ranking.csv: team records for each season
+
+My simulated league will be randomly generating the points scored by the players on a team, along with rebounds and assists.  Let's investigate the distributions of points, rebounds, and assists in a game by starting guards, forwards, and centers in the NBA dataset.  I only want the starters because the simulated league will not have players coming off the bench.  I can filter out the bench players in the NBA dataset by noting that only the starters are given a non-empty value for `START_POSITION`.  The appropriate SQL query is below.
+
+```sql
+SELECT START_POSITION, PTS, REB, AST
+FROM games_details
+WHERE START_POSITION IS NOT NULL AND START_POSITION != '';
+```
+
+This selects the points, rebounds, and assists columns for the rows of the table where `START_POSITION` is not null and not an empty string.  This script ran in about 25ms on my MySQL server running on an AWS RDP instance, while doing the same filtering on a pandas DataFrame on my machine took about 1s.  We can then export the SQL output to a csv file and plot the results using the `plotly` library.  For example, to create a histogram of the points scored in a single game by players, grouped by position, we have:
+
+```python
+import pandas as pd
+import plotly.express as px
+
+# read in data from nba_data/starter_stats.csv
+starter_stats = pd.read_csv('nba_data/starter_stats.csv')
+
+fig_pts = px.histogram(starter_stats, x='PTS', 
+                   color='START_POSITION',  # Column to group by
+                   nbins=50,  # Number of bins
+                   title='Points scored in a game by NBA starters',
+                   labels={'PTS': 'Points', 'START_POSITION': 'Position'},  # Rename axis
+                   barmode='group')  # Color of the histogram
+```
+
+The histograms for the three stats are below.
+
+
+![Pts plot](https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_pts_by_pos.png)
+
+![Reb plot](https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_reb_by_pos.png)
+
+![Ast plot](https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_ast_by_pos.png)
+
+We can see that the data likely follows a Poisson distribution, which makes sense, because it is reasonable to approximate that these events (i.e. getting a point, rebound or assist) occur at a constant mean rate and independently of the time since the last event.  
+
+The graphs are consistent with our intuition about the means.  For example, centers tend get more rebounds, and guards tend to get more assists.  The means are:
+
+- Guards: 15.1 pts, 3.8 reb, 4.6 ast
+- Forwards: 14.0 pts, 6.2 reb, 2.3 ast
+- Centers: 11.6 pts, 8.1 reb, 1.6 ast
+
+We are now ready to write the code for our simulated league.  The python libraries used are as follows:
 
 ```python
 import numpy as np
@@ -33,11 +83,12 @@ class pg(Player):
             'playmaking': (85, 10, 0, 100),
             'rebounding': (60, 15, 0, 100),
             'intangibles': (70, 5, 0, 100),
-            'height': (190, 5, 167, 226)
+            'height': (190, 5, 167, 226),
+            'poisson_means': (15.1, 3.8, 4.6) # pts, reb, ast
         }, seed=seed)
 ```
 
-The tuples associated with each dictionary entry have the following meaning: (value, standard deviation, min, max).  I chose the values and standard deviations for all the attributes by hand, picking numbers that seemed appropriate given what I know about the basketball positions.  
+The tuples associated with all but the last dictionary key have the following meaning: (value, standard deviation, min, max).  I chose the values and standard deviations for all the attributes by hand, picking numbers that seemed appropriate given what I know about the basketball positions.  The last dictionary key has the mean values for the statistics we will use in the Poisson distributions later.
 
 There is then a ```Player``` class that, when called, generates a player of a particular position and gives them fixed attributes.
 
@@ -45,21 +96,29 @@ There is then a ```Player``` class that, when called, generates a player of a pa
 class Player:
     def __init__(self, attribute_means_and_stds, seed=None):
         self.attributes = {}
-        for key, (mean, std, MIN, MAX) in attribute_means_and_stds.items():
-            self.attributes[key] = truncated_norm(mean, std, MIN, MAX, seed)
-        
-        # Define overall to be the average of the top 3 attributes, except for height
-        # first create new dictionary that removes height
-        self.attributes_without_height = {key: value for key, value in self.attributes.items() if key != 'height'}
+        for key, values in attribute_means_and_stds.items():
+            # exclude poisson_means from the truncated normal distribution
+            if key == 'poisson_means':
+                continue
+            else:
+                mean, std, MIN, MAX = values
+                self.attributes[key] = truncated_norm(mean, std, MIN, MAX, seed=seed)
+
+        # Define overall to be the average of the top 3 attributes, except for height and poisson_means
+        # first create new dictionary that removes height and poisson_means
+        self.attributes_without_height = {key: value for key, value in self.attributes.items() if key != 'height' and key != 'poisson_means'}
         self.overall = np.mean(sorted(self.attributes_without_height.values())[-3:])
         
-        # Define expected values of a player's stats
-        self.pts = 0.1 * (self.attributes['outside_scoring'] + self.attributes['inside_scoring'])
-        self.reb = 0.05 * self.attributes['rebounding']
-        self.ast = 0.05 * self.attributes['playmaking']
+        # Define expected values of a player's stats.
+        # These adjust the Poisson mean according to the player's attributes,
+        # i.e. they give a buff or a nerf to the Poisson mean
+        self.pts = (attribute_means_and_stds['poisson_means'][0] * self.attributes['outside_scoring'] * self.attributes['inside_scoring']) / (attribute_means_and_stds['outside_scoring'][0] * attribute_means_and_stds['inside_scoring'][0])
+        self.reb = (attribute_means_and_stds['poisson_means'][1] * self.attributes['rebounding']) / attribute_means_and_stds['rebounding'][0]
+        self.ast = (attribute_means_and_stds['poisson_means'][2] * self.attributes['playmaking']) / attribute_means_and_stds['playmaking'][0]
+
 ```
 
-The attributes are fixed by picking a random number according to a truncated normal distribution.  That way the players of the same position on different teams will have some uniqueness to them.
+The attributes are fixed by picking a random number according to a truncated normal distribution.  That way the players of the same position on different teams will have some uniqueness to them.  
 
 ```python
 def truncated_norm(mean, std_dev, MIN, MAX, seed=None):
@@ -70,6 +129,8 @@ def truncated_norm(mean, std_dev, MIN, MAX, seed=None):
     b = (MAX - mean) / std_dev
     return truncnorm.rvs(a, b, loc=mean, scale=std_dev)
 ```
+
+The `Player` class also sets the expected values for the points, rebounds, and assists that player will have for each game; these are calculated by taking the means of corresponding statistics from the real NBA dataset, and adjusting based on the player's attributes.
 
 There is then a ```team``` class that initializes a team with a particular name and five players on the roster.
 
@@ -88,7 +149,9 @@ class team:
 
 The ```seed``` will be set so that each team has its own seed, and therefore players are generated with the same attributes for a given team.  
 
-The ```game``` class simulates a matchup between two teams.  The points, rebounds, and assists for each player are random variables, also distributed with a truncated normal distribution.  Each player gets either a penalty or a buff to their expected points/rebounds/assists based on the relative difference between their ```overall``` attribute and that of the opponent's player at the same position. Each player's stats are then recorded in a NumPy array. 
+The ```game``` class simulates a matchup between two teams.  The points, rebounds, and assists for each player are discrete random variables, described by a Poisson distribution.  The means of the distributions are the means defined in the `Player` class, compounded with either a penalty or a buff to their expected points/rebounds/assists based on the relative difference between their ```overall``` attribute and that of the opponent's player at the same position.  This penalty/buff adds an interesting wrinkle to the stats in the case that a player is in an uneven matchup.  
+
+Each player's stats are then recorded in a NumPy array. 
 
 ```python
 class game:
@@ -116,9 +179,10 @@ class game:
         for pos in self.positions:
             player = getattr(team, pos)
             penalty = self.penalties[pos] * penalty_multiplier
-            pts = np.ceil(truncated_norm(player.pts * (1 + penalty), 10, 0, 80))
-            reb = np.ceil(truncated_norm(player.reb * (1 + penalty), 10, 0, 30))
-            ast = np.ceil(truncated_norm(player.ast * (1 + penalty), 10, 0, 20))
+            # pick a random number from a Poisson distribution with mean = player.pts * (1 + penalty), etc.
+            pts = np.ceil(np.random.poisson(player.pts * (1 + penalty)))
+            reb = np.ceil(np.random.poisson(player.reb * (1 + penalty)))
+            ast = np.ceil(np.random.poisson(player.ast * (1 + penalty)))
             box_scores.append([pts, reb, ast])
             self.stats[team.seed, self.game_number, np.where(np.array(self.positions) == pos)[0][0], :] = [pts, reb, ast]
         return np.array(box_scores)
