@@ -61,9 +61,9 @@ fg3_fig = px.histogram(fg3_data, x='FG3%', color='Position', marginal='rug', opa
 
 Click on the histograms to be redirected to an interactive version where you can select/deselect different positions.
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg2_fig.html" alt="FG2% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg2_fig.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg2_fig.png" alt="FG2% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg2_fig.html)
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg3_fig.html" alt="FG3% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg3_fig.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg3_fig.png" alt="FG3% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg3_fig.html)
 
 It is reasonable to say these follow a normal distribution.  The means and standard deviations are:
 
@@ -82,9 +82,9 @@ We can use these values in our simulation when generating a player.
 
 The rebounds and assists, on the other hand, appear to follow a Poisson distribution. This makes sense, because it is reasonable to approximate that these events (i.e. rebound or assist) occur at a constant mean rate and independently of the time since the last event.
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_reb.html" alt="Reb plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_reb.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_reb.png" alt="Reb plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_reb.html)
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_ast.html" alt="Ast plot" style="border: 2px solid gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_ast.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_ast.png" alt="Ast plot" style="border: 2px solid gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fig_ast.html)
 
 
 The means for these distributions are:
