@@ -61,9 +61,9 @@ fg3_fig = px.histogram(fg3_data, x='FG3%', color='Position', marginal='rug', opa
 
 Click on the histograms to be redirected to an interactive version where you can select/deselect different positions.
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg2_fig.png" alt="FG2% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg2_fig.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg2_fig.png" alt="FG2% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/html_files/fg2_fig.html)
 
-[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg3_fig.png" alt="FG3% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/bball_league/main/html_files/fg3_fig.html)
+[<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg3_fig.png" alt="FG3% plot" style="border: 2px solid  gray;">](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/html_files/fg3_fig.html)
 
 It is reasonable to say these follow a normal distribution.  The means and standard deviations are:
 
