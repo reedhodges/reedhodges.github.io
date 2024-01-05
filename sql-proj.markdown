@@ -80,7 +80,7 @@ C: mean = 0.32, std = 0.12
 
 We can use these values in our simulation when generating a player.
 
-The rebounds and assists, on the other hand, appear to follow a Poisson distribution. This makes sense, because it is reasonable to approximate that these events (i.e. rebound or assist) occur at a constant mean rate and independently of the time since the last event.
+The rebounds, assists, steals, blocks, and turnovers, on the other hand, appear to follow a Poisson distribution. This makes sense, because it is reasonable to approximate that these events (i.e. rebound or assist) occur at a constant mean rate and independently of the time since the last event.
 
 [<img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_reb_by_pos.png" alt="Reb plot" style="border: 2px solid  gray;">](html_files/fig_reb.html)
 
@@ -90,9 +90,21 @@ The rebounds and assists, on the other hand, appear to follow a Poisson distribu
 The means for these distributions are:
 
 ```
-G: 3.8 reb, 4.6 ast
-F: 6.2 reb, 2.3 ast
-C: 8.1 reb, 1.6 ast
+G OREB 0.6941601915652641
+G DREB 3.0671553535649707
+G STL 1.1481503200899184
+G BLK 0.29137467624492985
+G TO 2.1170796070957336
+F OREB 1.4905629025794407
+F DREB 4.696712899158432
+F STL 0.9501607874185067
+F BLK 0.6708402975300316
+F TO 1.6754537723953904
+C OREB 2.494358733697034
+C DREB 5.618290608318179
+C STL 0.6815079877202245
+C BLK 1.2430730724858723
+C TO 1.595119375843257
 ```
 
 We are now ready to write the code for our simulated league.
@@ -121,8 +133,12 @@ class guard(player):
             'fg2': (0.47, 0.09),
             'fg3': (0.35, 0.09),
             # mean value 
-            'reb': 3.8,
-            'ast': 4.6
+            'dreb': 3.07,
+            'oreb': 0.69,
+            'ast': 4.6,
+            'stl': 1.15,
+            'blk': 0.29,
+            'to': 2.12
         }, seed=seed)
 ```
 
@@ -146,7 +162,7 @@ class player:
             self.expected_stats[stat] = np.random.poisson(mean, 1)[0]
 
         # create an overall rating of each player based on their expected stats
-        self.overall = (self.expected_stats['fg2'] + self.expected_stats['fg3']  + self.expected_stats['reb'] + self.expected_stats['ast']) / (typical_stats['fg2'][0] * typical_stats['fg3'][0] * typical_stats['reb'] * typical_stats['ast']) 
+        self.overall = (self.expected_stats['fg2'] + self.expected_stats['fg3']  + self.expected_stats['dreb'] + self.expected_stats['oreb'] + self.expected_stats['ast']) / (typical_stats['fg2'][0] * typical_stats['fg3'][0] * typical_stats['dreb'] * typical_stats['oreb'] * typical_stats['ast']) 
 ```
 
 The `team` class initializes a team with a particular name, and generates five players to be on the roster.
@@ -179,17 +195,39 @@ class team:
 This class also has dictionaries that contain the expected distribution of stats by position, which are weighted according to the player's expected values for those stats.  For example, for rebounds we have:
 
 ```python
-
 def normalize_dict(dictionary):
     '''
     Normalize a dictionary of values so that they sum to 1.
     '''
     total = sum(dictionary.values())
+    if total == 0:
+        return {key: 0.2 for key in dictionary.keys()}
     return {key: value / total for key, value in dictionary.items()}
 
 class team:
-    ...
-    def roster_weight(stat_to_consider):
+    ''' 
+    Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
+    '''
+    def __init__(self, name, seed=None):
+        self.name = name
+        self.seed = seed
+        # roster
+        self.pg = guard(seed=self.seed)
+        self.sg = guard(seed=self.seed + 1)
+        self.sf = forward(seed=self.seed)
+        self.pf = forward(seed=self.seed + 1)
+        self.c = center(seed=self.seed)
+
+        # dictionaries with position objects
+        self.positions_dict = {
+            'PG': self.pg,
+            'SG': self.sg,
+            'SF': self.sf,
+            'PF': self.pf,
+            'C': self.c
+        }
+
+        def roster_weight(stat_to_consider):
             # returns a dictionary of weights for each position based on a given stat.
             weights_dict = {}
             if stat_to_consider == 'fg':
@@ -200,24 +238,27 @@ class team:
             for position, player in self.positions_dict.items():
                 weights_dict[position] = player.expected_stats[stat_to_consider]
             return normalize_dict(weights_dict)
-    
-    # expected distribution of shots taken by position
-    self.shot_distribution_pos = roster_weight('fg')
-    # expected distribution of rebounds by position
-    self.reb_distribution_pos = roster_weight('reb')
-    # expected distribution of assists by position
-    self.ast_distribution_pos = roster_weight('ast')
-    # pace of team: average number of possessions per game
-    self.pace = np.random.normal(75, 5, 1)[0]
-    # expected rebounds a team gets per game
-    self.expected_reb = sum(player.expected_stats['reb'] for player in self.positions_dict.values())
+
+        # expected distributions of stats by position
+        self.shot_distribution_pos = roster_weight('fg')
+        self.dreb_distribution_pos = roster_weight('dreb')
+        self.oreb_distribution_pos = roster_weight('oreb')
+        self.ast_distribution_pos = roster_weight('ast')
+        self.stl_distribution_pos = roster_weight('stl')
+        self.blk_distribution_pos = roster_weight('blk')
+        self.to_distribution_pos = roster_weight('to')
+        # pace of team: average number of possessions per game
+        self.pace = np.random.normal(75, 5, 1)[0]
+        # expected rebounds a team gets per game
+        self.expected_dreb = sum(player.expected_stats['dreb'] for player in self.positions_dict.values())
+        self.expected_oreb = sum(player.expected_stats['oreb'] for player in self.positions_dict.values())
 ```
 
 The last two lines set a pace for the team, which will be used later so that each simulated game does not have the same number of possessions, and the total number of expected rebounds per game.
 
 ### Simulating a game
 
-The program works by simulating a bunch of individual possessions in a game between two teams.  First there are functions which handle the outcome of a shot, assist, or rebound.
+The program works by simulating a bunch of individual possessions in a game between two teams.  First there are functions which handle the outcome of a shot, assist, rebound, etc.  For example:
 
 ```python
 def handle_shot(off_team, position, shot_worth, result):
@@ -230,13 +271,14 @@ def handle_shot(off_team, position, shot_worth, result):
         # update points
         result[position][0] += shot_worth
         # update makes
-        make_index = 3 if shot_worth == 2 else 5
+        make_index = 4 if shot_worth == 2 else 6
         result[position][make_index] += 1
+        # update attempts
+        result[position][make_index + 1] += 1
         return True
-    # update misses
-    miss_index = 4 if shot_worth == 2 else 6
+    # update attempts for a miss
+    miss_index = 5 if shot_worth == 2 else 7
     result[position][miss_index] += 1
-    return False
 
 def handle_assist(off_team, shooter, result):
     '''
@@ -248,12 +290,16 @@ def handle_assist(off_team, shooter, result):
             assister = weighted_random_key(off_team.ast_distribution_pos)
         result[assister][2] += 1
 
-def handle_rebound(team, result):
+def handle_rebound(type, team, result):
     '''
-    Determines if a rebound is made and updates the stats accordingly.
+    Updates the rebounding stats.
     '''
-    rebounder = weighted_random_key(team.reb_distribution_pos)
-    result[rebounder][1] += 1
+    if type == 'oreb':
+        rebounder = weighted_random_key(team.oreb_distribution_pos)
+        result[rebounder][2] += 1
+    else:
+        rebounder = weighted_random_key(team.dreb_distribution_pos)
+        result[rebounder][1] += 1
 ```
 
 These select a player using the `weighted_random_key` function, which picks according to a distribution of probabilities for the players on the team.  If your probability is relatively large compared to your teammates, you are more likely to be selected by the function.
@@ -282,9 +328,9 @@ We also initialize the stats for that possession with an `initialize_stats` func
 def initialize_stats():
     '''
     Initializes a dictionary of stats for each position on a single posession.
-    [PTS, REB, AST, 2PM, 2PA, 3PM, 3PA]
+    [PTS, DREB, OREB, AST, 2PM, 2PA, 3PM, 3PA, STL, BLK, TO]
     '''
-    return {pos: [0] * 7 for pos in ['PG', 'SG', 'SF', 'PF', 'C']}
+    return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C']}
 ```
 
 The `possession` function proceeds through a possession, calling the above functions when appropriate.  It randomly selects a player from the team to take a shot; the random selection is weighted by the players' field goal percentages, i.e. if you are a better shooter, you are more likely to be the one to take the shot.  The function also allows for the possibility of a turnover, and for offensive rebounds.
@@ -301,6 +347,8 @@ def possession(off_team, def_team):
 
     # check for a turnover
     if random.random() < TURNOVER_CHANCE:
+        handle_steal(def_team, def_result)
+        handle_turnover(off_team, off_result)
         return off_result, def_result, next_team
     
     # determine who will shoot the ball
@@ -315,13 +363,16 @@ def possession(off_team, def_team):
         handle_assist(off_team, shooter, off_result)
         return off_result, def_result, next_team
     
+    # check for block
+    handle_block(def_team, def_result)
+    
     # check for offensive rebound
-    if random.random() < OFF_REBOUND_CHANCE_BASE + OFF_REBOUND_BUFF_FACTOR * ((off_team.expected_reb / def_team.expected_reb) - 1):
-        handle_rebound(off_team, off_result)
+    if random.random() < OFF_REBOUND_CHANCE_BASE + OFF_REBOUND_BUFF_FACTOR * ((off_team.expected_oreb / def_team.expected_dreb) - 1):
+        handle_rebound('oreb', off_team, off_result)
         next_team = off_team
     # assign defensive rebound
     else:
-        handle_rebound(def_team, def_result)
+        handle_rebound('dreb', def_team, def_result)
     
     return off_result, def_result, next_team
 ```
@@ -338,15 +389,15 @@ class game:
         self.team2 = team2
 
     def initialize_box_score(self):
-        return {pos: [0] * 7 for pos in ['PG', 'SG', 'SF', 'PF', 'C', 'Team']}
+        return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C', 'Team']}
 
     def update_box_score(self, box_score, position_stats):
         for position, stats in position_stats.items():
-            for i in range(7):
+            for i in range(11):
                 box_score[position][i] += stats[i]
 
     def sum_team_stats(self, box_score):
-        for i in range(7):
+        for i in range(11):
             box_score['Team'][i] = sum(stats[i] for position, stats in box_score.items() if position != 'Team')
 
     def play_game(self):
