@@ -8,3 +8,12 @@ layout: home
 I am a PhD student in the QCD Theory group at Duke University, with advisor Dr. Thomas Mehen.  Our research involves using effective field theory models, and writing associated programs, to make both qualitative and quantitative predictions for the results of experiments at particle colliders.  I am interested in using my skills to pursue opportunities in the data science field.
 
 You can download a pdf of my resume [here](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/ReedHodges_Resume.pdf).
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Click to toggle
+</button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    This is the collapsible content.
+  </div>
+</div>
