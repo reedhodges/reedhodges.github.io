@@ -41,6 +41,8 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
+<br>
+
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
     Exploratory Data Analysis
@@ -126,6 +128,8 @@ Click the buttons below to learn about the various components of this project.
     <p>We are now ready to write the code for our simulated league.</p>
   </div>
 </div>
+
+<br>
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python-simulation" aria-expanded="false" aria-controls="python-simulation">
@@ -513,6 +517,8 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
+<br>
+
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#SQL-queries" aria-expanded="false" aria-controls="SQL-queries">
     SQL queries
@@ -557,6 +563,8 @@ Click the buttons below to learn about the various components of this project.
     </code></pre>
   </div>
 </div>
+
+<br>
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#visualization" aria-expanded="false" aria-controls="visualization">
