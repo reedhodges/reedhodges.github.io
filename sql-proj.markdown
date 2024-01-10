@@ -12,7 +12,11 @@ I decided this also would be a good opportunity to further practice my python sk
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
     Dataset
   </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
+    Exploratory Data Analysis
+  </button>
 </p>
+
 <div class="collapse" id="dataset">
   <div class="card card-body">
     I want the simulated basketball games to be as close to reality as possible, so let's look into typical game statistics using a Kaggle dataset of real NBA games.  The dataset has 5 csv files: teams, players, games, games_details, and ranking.  They all contain multiple columns of data, for example:
@@ -25,7 +29,7 @@ I decided this also would be a good opportunity to further practice my python sk
         <li>ranking.csv: team records for each season</li>
     </ul>
 
-    My simulated basketball league will assign to a player expected values for several of their in-game statistics, e.g. three-point field goal percentage and number of rebounds.  Let's look at the career three-point field goal percentages for starting players, and plot the distribution for each of the three positions, guard (G), forward, (F), and center (C).  It is quick to run an SQL query against the games_details table to get this data:
+    My simulated basketball league will assign to a player expected values for several of their in-game statistics, e.g. three-point field goal percentage and number of rebounds.  Let's look at the career three-point field goal percentages for starting players, and plot the distribution for each of the three positions, guard (<code>G</code>), forward, (<code>F</code>), and center (<code>C</code>).  It is quick to run an SQL query against the games_details table to get this data:
 
     <pre><code class="sql">
     SELECT PLAYER_ID, SUM(FG3M) AS Total_FG3M, SUM(FG3A) AS Total_FG3A
@@ -34,30 +38,16 @@ I decided this also would be a good opportunity to further practice my python sk
     GROUP BY PLAYER_ID;
     </code></pre>
 
-    This query groups the starting guards by their ID, and sums the values in the columns 'FG3M' and 'FG3A', returning the sums along with their ID.  Only the starting players have a non-null value for 'START_POSITION', so the 'WHERE START_POSITION = 'G'' line selects only the starting guards.  We can do an analogous query for two-point field goals, and we can then export the data to do some exploratory data analysis in Python.
+    This query groups the starting guards by their ID, and sums the values in the columns <code>FG3M</code> and <code>FG3A</code>, returning the sums along with their ID.  Only the starting players have a non-null value for <code>START_POSITION</code>, so the <code>WHERE START_POSITION = 'G'</code> line selects only the starting guards.  We can do an analogous query for two-point field goals, and we can then export the data to do some exploratory data analysis in Python.
   </div>
 </div>
 
-## <ins>Dataset</ins>
+<div class="collapse" id="EDA">
+  <div class="card card-body">
+    A processing function can filter out outliers.
+  </div>
+</div>
 
-I want the simulated basketball games to be as close to reality as possible, so let's look into typical game statistics using a Kaggle dataset of real NBA games.  The dataset has 5 csv files: teams, players, games, games_details, and ranking.  They all contain multiple columns of data, for example:
-
-- teams.csv: founding year, mascot, arena name, owner name, etc.
-- players.csv: player name, player ID, etc.
-- games.csv: game date, team IDs, stats for each team, etc.
-- games_details.csv: box scores for each game
-- ranking.csv: team records for each season
-
-My simulated basketball league will assign to a player expected values for several of their in-game statistics, e.g. three-point field goal percentage and number of rebounds.  Let's look at the career three-point field goal percentages for starting players, and plot the distribution for each of the three positions, guard (`G`), forward, (`F`), and center (`C`).  It is quick to run an SQL query against the games_details table to get this data:
-
-```sql
-SELECT PLAYER_ID, SUM(FG3M) AS Total_FG3M, SUM(FG3A) AS Total_FG3A
-FROM games_details
-WHERE START_POSITION = 'G'
-GROUP BY PLAYER_ID;
-```
-
-This query groups the starting guards by their ID, and sums the values in the columns `FG3M` and `FG3A`, returning the sums along with their ID.  Only the starting players have a non-null value for `START_POSITION`, so the `WHERE START_POSITION = 'G'` line selects only the starting guards.  We can do an analogous query for two-point field goals, and we can then export the data to do some exploratory data analysis in Python.
 
 ## <ins>Exploratory data analysis</ins>
 
