@@ -41,7 +41,7 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
-<br>
+<br style="margin-top: -5px;">
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
@@ -129,7 +129,7 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
-<br>
+<br style="margin-top: -5px;">
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python-simulation" aria-expanded="false" aria-controls="python-simulation">
@@ -517,7 +517,7 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
-<br>
+<br style="margin-top: -5px;">
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#SQL-queries" aria-expanded="false" aria-controls="SQL-queries">
@@ -564,7 +564,7 @@ Click the buttons below to learn about the various components of this project.
   </div>
 </div>
 
-<br>
+<br style="margin-top: -5px;">
 
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#visualization" aria-expanded="false" aria-controls="visualization">
