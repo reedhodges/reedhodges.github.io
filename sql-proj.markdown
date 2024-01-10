@@ -10,7 +10,7 @@ I decided this also would be a good opportunity to further practice my python sk
 
 Click the buttons below to learn about the various components of this project.
 
-<p class="d-inline-flex gap-1">
+<div class="btn-group" role="group" aria-label="button group">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
     Dataset
   </button>
@@ -26,7 +26,7 @@ Click the buttons below to learn about the various components of this project.
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#visualization" aria-expanded="false" aria-controls="visualization">
     Data visualization
   </button>
-</p>
+</div>
 
 <div class="collapse" id="dataset">
   <div class="card card-body">
