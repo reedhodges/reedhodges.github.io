@@ -6,7 +6,37 @@ permalink: /sql-project/
 
 Recently I wanted to learn how to run SQL queries.  In deciding which data to use, I wanted a dataset where I'd have some level of intuition for what the data points mean.  An obvious choice is sports statistics, and basketball is the sport with which I'm most familiar.  
 
-I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.
+I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.  
+
+<p class="d-inline-flex gap-1">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
+    Dataset
+  </button>
+</p>
+<div class="collapse" id="dataset">
+  <div class="card card-body">
+    I want the simulated basketball games to be as close to reality as possible, so let's look into typical game statistics using a Kaggle dataset of real NBA games.  The dataset has 5 csv files: teams, players, games, games_details, and ranking.  They all contain multiple columns of data, for example:
+
+    <ul>
+        <li>teams.csv: founding year, mascot, arena name, owner name, etc.</li>
+        <li>players.csv: player name, player ID, etc.</li>
+        <li>games.csv: game date, team IDs, stats for each team, etc.</li>
+        <li>games_details.csv: box scores for each game</li>
+        <li>ranking.csv: team records for each season</li>
+    </ul>
+
+    My simulated basketball league will assign to a player expected values for several of their in-game statistics, e.g. three-point field goal percentage and number of rebounds.  Let's look at the career three-point field goal percentages for starting players, and plot the distribution for each of the three positions, guard (G), forward, (F), and center (C).  It is quick to run an SQL query against the games_details table to get this data:
+
+    <pre><code class="sql">
+    SELECT PLAYER_ID, SUM(FG3M) AS Total_FG3M, SUM(FG3A) AS Total_FG3A
+    FROM games_details
+    WHERE START_POSITION = 'G'
+    GROUP BY PLAYER_ID;
+    </code></pre>
+
+    This query groups the starting guards by their ID, and sums the values in the columns 'FG3M' and 'FG3A', returning the sums along with their ID.  Only the starting players have a non-null value for 'START_POSITION', so the 'WHERE START_POSITION = 'G'' line selects only the starting guards.  We can do an analogous query for two-point field goals, and we can then export the data to do some exploratory data analysis in Python.
+  </div>
+</div>
 
 ## <ins>Dataset</ins>
 
