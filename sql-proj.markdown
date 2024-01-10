@@ -8,22 +8,11 @@ Recently I wanted to learn how to run SQL queries.  In deciding which data to us
 
 I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.  
 
-<div id="button-container">
+Click the buttons below to learn about the various components of this project.
+
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
     Dataset
-  </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
-    Exploratory Data Analysis
-  </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python-simulation" aria-expanded="false" aria-controls="python-simulation">
-    Python simulation
-  </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#SQL-queries" aria-expanded="false" aria-controls="SQL-queries">
-    SQL queries
-  </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#visualization" aria-expanded="false" aria-controls="visualization">
-    Data visualization
   </button>
 </p>
 
@@ -51,6 +40,12 @@ I decided this also would be a good opportunity to further practice my python sk
     <p>This query groups the starting guards by their ID, and sums the values in the columns <code>FG3M</code> and <code>FG3A</code>, returning the sums along with their ID.  Only the starting players have a non-null value for <code>START_POSITION</code>, so the <code>WHERE START_POSITION = 'G'</code> line selects only the starting guards.  We can do an analogous query for two-point field goals, and we can then export the data to do some exploratory data analysis in Python.</p>
   </div>
 </div>
+
+<p class="d-inline-flex gap-1">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
+    Exploratory Data Analysis
+  </button>
+</p>
 
 <div class="collapse" id="EDA">
   <div class="card card-body">
@@ -131,6 +126,12 @@ I decided this also would be a good opportunity to further practice my python sk
     <p>We are now ready to write the code for our simulated league.</p>
   </div>
 </div>
+
+<p class="d-inline-flex gap-1">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python-simulation" aria-expanded="false" aria-controls="python-simulation">
+    Python simulation
+  </button>
+</p>
 
 <div class="collapse" id="python-simulation">
   <div class="card card-body">
@@ -512,6 +513,12 @@ I decided this also would be a good opportunity to further practice my python sk
   </div>
 </div>
 
+<p class="d-inline-flex gap-1">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#SQL-queries" aria-expanded="false" aria-controls="SQL-queries">
+    SQL queries
+  </button>
+</p>
+
 <div class="collapse" id="SQL-queries">
   <div class="card card-body">
     <pre><code class="sql">
@@ -551,10 +558,14 @@ I decided this also would be a good opportunity to further practice my python sk
   </div>
 </div>
 
+<p class="d-inline-flex gap-1">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#visualization" aria-expanded="false" aria-controls="visualization">
+    Data visualization
+  </button>
+</p>
+
 <div class="collapse" id="visualization">
   <div class="card card-body">
     A processing function can filter out outliers.
   </div>
-</div>
-
 </div>
