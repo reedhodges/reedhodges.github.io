@@ -40,11 +40,17 @@
     <!-- script to replace active button behavior -->
     <script>
       document.querySelectorAll('.btn-group .btn').forEach(function(button) {
-        button.addEventListener('click', function() {
-          document.querySelectorAll('.btn-group .btn').forEach(function(btn) {
-            btn.classList.remove('btn-active');
-          });
-          this.classList.add('btn-active');
+        // Get the target collapse element ID from the button's data-bs-target attribute
+        var target = button.getAttribute('data-bs-target');
+
+        // Add event listener for when the collapse element starts to be shown
+        document.querySelector(target).addEventListener('show.bs.collapse', function () {
+          button.classList.add('btn-active');
+        });
+
+        // Add event listener for when the collapse element is fully hidden
+        document.querySelector(target).addEventListener('hide.bs.collapse', function () {
+          button.classList.remove('btn-active');
         });
       });
     </script>
