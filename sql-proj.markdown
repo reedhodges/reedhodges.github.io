@@ -133,347 +133,325 @@ I decided this also would be a good opportunity to further practice my python sk
 
 <div class="collapse" id="python-simulation">
   <div class="card card-body">
-    A processing function can filter out outliers.
-  </div>
-</div>
+    <p>The python libraries used are as follows:</p>
 
-<div class="collapse" id="SQL-queries">
-  <div class="card card-body">
-    A processing function can filter out outliers.
-  </div>
-</div>
+    <pre><code class="python">
+    import numpy as np
+    import pandas as pd
+    import random
+    from itertools import combinations
+    from math import comb
+    </code></pre>
 
-<div class="collapse" id="visualization">
-  <div class="card card-body">
-    A processing function can filter out outliers.
-  </div>
-</div>
+    <h3>Creating the rosters</h3>
 
+    <p>I create a class for each of the three basic positions, using the means and standard deviations (if applicable) for the distributions we investigated earlier. For example, the <code>guard</code> class looks like:</p>
 
-## <ins>Exploratory data analysis</ins>
+    <pre><code class="python">
+    class guard(player):
+        def __init__(self, seed=None):
+            super().__init__({
+                # stat: (mean, std)
+                'fg2': (0.47, 0.09),
+                'fg3': (0.35, 0.09),
+                # mean value
+                'dreb': 3.07,
+                'oreb': 0.69,
+                'ast': 4.6,
+                'stl': 1.15,
+                'blk': 0.29,
+                'to': 2.12
+            }, seed=seed)
+    </code></pre>
 
+    <p>I then have a <code>player</code> class that, when called, generates a player of a particular position and gives them fixed expected values for their stats, by picking a number either according to a normal or Poisson distribution. This makes each player have some level of uniqueness to them.</p>
 
+    <pre><code class="python">
+    class player:
+        '''
+        Generates a player of a given position and sets their expected stats.
+        '''
+        def __init__(self, typical_stats, seed=None):
+            self.expected_stats = {}
+            self.seed = seed
+            means_stds = {key: value for key, value in typical_stats.items() if type(value) == tuple}
+            poissons = {key: value for key, value in typical_stats.items() if type(value) == float}
 
-## <ins>Python simulation</ins>
+            for stat, (mean, std) in means_stds.items():
+                self.expected_stats[stat] = np.random.normal(mean, std, 1)[0]
 
-The python libraries used are as follows:
+            for stat, mean in poissons.items():
+                self.expected_stats[stat] = np.random.poisson(mean, 1)[0]
 
-```python
-import numpy as np
-import pandas as pd
-import random
-from itertools import combinations
-from math import comb
-```
+            # create an overall rating of each player based on their expected stats
+            self.overall = (self.expected_stats['fg2'] + self.expected_stats['fg3'] + self.expected_stats['dreb'] + self.expected_stats['oreb'] + self.expected_stats['ast']) / (typical_stats['fg2'][0] * typical_stats['fg3'][0] * typical_stats['dreb'] * typical_stats['oreb'] * typical_stats['ast'])
+    </code></pre>
 
-### Creating the rosters
+    <p>The <code>team</code> class initializes a team with a particular name and generates five players to be on the roster.</p>
 
-I create a class for each of the three basic positions, using the means and standard deviations (if applicable) for the distributions we investigated earlier.  For example, the `guard` class looks like:
+    <pre><code class="python">
+    class team:
+        ''' 
+        Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
+        '''
+        def __init__(self, name, seed=None):
+            self.name = name
+            self.seed = seed
+            # roster
+            self.pg = guard(seed=self.seed)
+            self.sg = guard(seed=self.seed + 1)
+            self.sf = forward(seed=self.seed)
+            self.pf = forward(seed=self.seed + 1)
+            self.c = center(seed=self.seed)
 
-```python
-class guard(player):
-    def __init__(self, seed=None):
-        super().__init__({
-            # stat: (mean, std)
-            'fg2': (0.47, 0.09),
-            'fg3': (0.35, 0.09),
-            # mean value 
-            'dreb': 3.07,
-            'oreb': 0.69,
-            'ast': 4.6,
-            'stl': 1.15,
-            'blk': 0.29,
-            'to': 2.12
-        }, seed=seed)
-```
+            # dictionaries with position objects
+            self.positions_dict = {
+                'PG': self.pg,
+                'SG': self.sg,
+                'SF': self.sf,
+                'PF': self.pf,
+                'C': self.c
+            }
+    </code></pre>
 
-I then have a `player` class that, when called, generates a player of a particular position and gives them fixed expected values for their stats, by picking a number either according to a normal or Poisson distribution.  This makes each player have some level of uniqueness to them.
+    <p>This class also has dictionaries that contain the expected distribution of stats by position, which are weighted according to the player's expected values for those stats. For example, for rebounds we have:</p>
 
-```python
-class player:
-    '''
-    Generates a player of a given position and sets their expected stats.
-    '''
-    def __init__(self, typical_stats, seed=None):
-        self.expected_stats = {}
-        self.seed = seed
-        means_stds = {key: value for key, value in typical_stats.items() if type(value) == tuple} 
-        poissons = {key: value for key, value in typical_stats.items() if type(value) == float}
+    <pre><code class="python">
+    def normalize_dict(dictionary):
+        '''
+        Normalize a dictionary of values so that they sum to 1.
+        '''
+        total = sum(dictionary.values())
+        if total == 0:
+            return {key: 0.2 for key in dictionary.keys()}
+        return {key: value / total for key, value in dictionary.items()}
 
-        for stat, (mean, std) in means_stds.items():
-            self.expected_stats[stat] = np.random.normal(mean, std, 1)[0]
+    class team:
+        ''' 
+        Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
+        '''
+        def __init__(self, name, seed=None):
+            self.name = name
+            self.seed = seed
+            # roster
+            self.pg = guard(seed=self.seed)
+            self.sg = guard(seed=self.seed + 1)
+            self.sf = forward(seed=self.seed)
+            self.pf = forward(seed=self.seed + 1)
+            self.c = center(seed=self.seed)
 
-        for stat, mean in poissons.items():
-            self.expected_stats[stat] = np.random.poisson(mean, 1)[0]
+            # dictionaries with position objects
+            self.positions_dict = {
+                'PG': self.pg,
+                'SG': self.sg,
+                'SF': self.sf,
+                'PF': self.pf,
+                'C': self.c
+            }
 
-        # create an overall rating of each player based on their expected stats
-        self.overall = (self.expected_stats['fg2'] + self.expected_stats['fg3']  + self.expected_stats['dreb'] + self.expected_stats['oreb'] + self.expected_stats['ast']) / (typical_stats['fg2'][0] * typical_stats['fg3'][0] * typical_stats['dreb'] * typical_stats['oreb'] * typical_stats['ast']) 
-```
-
-The `team` class initializes a team with a particular name, and generates five players to be on the roster.
-
-```python
-class team:
-    ''' 
-    Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
-    '''
-    def __init__(self, name, seed=None):
-        self.name = name
-        self.seed = seed
-        # roster
-        self.pg = guard(seed=self.seed)
-        self.sg = guard(seed=self.seed + 1)
-        self.sf = forward(seed=self.seed)
-        self.pf = forward(seed=self.seed + 1)
-        self.c = center(seed=self.seed)
-
-        # dictionaries with position objects
-        self.positions_dict = {
-            'PG': self.pg,
-            'SG': self.sg,
-            'SF': self.sf,
-            'PF': self.pf,
-            'C': self.c
-        }
-```
-
-This class also has dictionaries that contain the expected distribution of stats by position, which are weighted according to the player's expected values for those stats.  For example, for rebounds we have:
-
-```python
-def normalize_dict(dictionary):
-    '''
-    Normalize a dictionary of values so that they sum to 1.
-    '''
-    total = sum(dictionary.values())
-    if total == 0:
-        return {key: 0.2 for key in dictionary.keys()}
-    return {key: value / total for key, value in dictionary.items()}
-
-class team:
-    ''' 
-    Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
-    '''
-    def __init__(self, name, seed=None):
-        self.name = name
-        self.seed = seed
-        # roster
-        self.pg = guard(seed=self.seed)
-        self.sg = guard(seed=self.seed + 1)
-        self.sf = forward(seed=self.seed)
-        self.pf = forward(seed=self.seed + 1)
-        self.c = center(seed=self.seed)
-
-        # dictionaries with position objects
-        self.positions_dict = {
-            'PG': self.pg,
-            'SG': self.sg,
-            'SF': self.sf,
-            'PF': self.pf,
-            'C': self.c
-        }
-
-        def roster_weight(stat_to_consider):
-            # returns a dictionary of weights for each position based on a given stat.
-            weights_dict = {}
-            if stat_to_consider == 'fg':
+            def roster_weight(stat_to_consider):
+                # returns a dictionary of weights for each position based on a given stat.
+                weights_dict = {}
+                if stat_to_consider == 'fg':
+                    for position, player in self.positions_dict.items():
+                        # choose the larger of 2P% and 3P%
+                        weights_dict[position] = max(player.expected_stats['fg2'], player.expected_stats['fg3'])
+                    return normalize_dict(weights_dict)
                 for position, player in self.positions_dict.items():
-                    # choose the larger of 2P% and 3P%
-                    weights_dict[position] = max(player.expected_stats['fg2'], player.expected_stats['fg3'])
+                    weights_dict[position] = player.expected_stats[stat_to_consider]
                 return normalize_dict(weights_dict)
-            for position, player in self.positions_dict.items():
-                weights_dict[position] = player.expected_stats[stat_to_consider]
-            return normalize_dict(weights_dict)
 
-        # expected distributions of stats by position
-        self.shot_distribution_pos = roster_weight('fg')
-        self.dreb_distribution_pos = roster_weight('dreb')
-        self.oreb_distribution_pos = roster_weight('oreb')
-        self.ast_distribution_pos = roster_weight('ast')
-        self.stl_distribution_pos = roster_weight('stl')
-        self.blk_distribution_pos = roster_weight('blk')
-        self.to_distribution_pos = roster_weight('to')
-        # pace of team: average number of possessions per game
-        self.pace = np.random.normal(75, 5, 1)[0]
-        # expected rebounds a team gets per game
-        self.expected_dreb = sum(player.expected_stats['dreb'] for player in self.positions_dict.values())
-        self.expected_oreb = sum(player.expected_stats['oreb'] for player in self.positions_dict.values())
-```
+            # expected distributions of stats by position
+            self.shot_distribution_pos = roster_weight('fg')
+            self.dreb_distribution_pos = roster_weight('dreb')
+            self.oreb_distribution_pos = roster_weight('oreb')
+            self.ast_distribution_pos = roster_weight('ast')
+            self.stl_distribution_pos = roster_weight('stl')
+            self.blk_distribution_pos = roster_weight('blk')
+            self.to_distribution_pos = roster_weight('to')
+            # pace of team: average number of possessions per game
+            self.pace = np.random.normal(75, 5, 1)[0]
+            # expected rebounds a team gets per game
+            self.expected_dreb = sum(player.expected_stats['dreb'] for player in self.positions_dict.values())
+            self.expected_oreb = sum(player.expected_stats['oreb'] for player in self.positions_dict.values())
+    </code></pre>
 
-The last two lines set a pace for the team, which will be used later so that each simulated game does not have the same number of possessions, and the total number of expected rebounds per game.
+    <p>The last two lines set a pace for the team, which will be used later so that each simulated game does not have the same number of possessions, and the total number of expected rebounds per game.</p>
 
-### Simulating a game
+    <h3>Simulating a game</h3>
 
-The program works by simulating a bunch of individual possessions in a game between two teams.  First there are functions which handle the outcome of a shot, assist, rebound, etc.  For example:
+    <p>The program works by simulating a bunch of individual possessions in a game between two teams. First there are functions which handle the outcome of a shot, assist, rebound, etc. For example:</p>
 
-```python
-def handle_shot(off_team, position, shot_worth, result):
-    '''
-    Determines if a shot is made and updates the stats accordingly.
-    '''
-    shot_key = 'fg2' if shot_worth == 2 else 'fg3'
-    shot_chance = off_team.positions_dict[position].expected_stats[shot_key]
-    if random.random() < shot_chance:
-        # update points
-        result[position][0] += shot_worth
-        # update makes
-        make_index = 4 if shot_worth == 2 else 6
-        result[position][make_index] += 1
-        # update attempts
-        result[position][make_index + 1] += 1
-        return True
-    # update attempts for a miss
-    miss_index = 5 if shot_worth == 2 else 7
-    result[position][miss_index] += 1
+    <pre><code class="python">
+    def handle_shot(off_team, position, shot_worth, result):
+        '''
+        Determines if a shot is made and updates the stats accordingly.
+        '''
+        shot_key = 'fg2' if shot_worth == 2 else 'fg3'
+        shot_chance = off_team.positions_dict[position].expected_stats[shot_key]
+        if random.random() < shot_chance:
+            # update points
+            result[position][0] += shot_worth
+            # update makes
+            make_index = 4 if shot_worth == 2 else 6
+            result[position][make_index] += 1
+            # update attempts
+            result[position][make_index + 1] += 1
+            return True
+        # update attempts for a miss
+        miss_index = 5 if shot_worth == 2 else 7
+        result[position][miss_index] += 1
 
-def handle_assist(off_team, shooter, result):
-    '''
-    Determines if an assist is made and updates the stats accordingly.
-    '''
-    if random.random() < ASSIST_CHANCE:
-        assister = weighted_random_key(off_team.ast_distribution_pos)
-        while assister == shooter:
+    def handle_assist(off_team, shooter, result):
+        '''
+        Determines if an assist is made and updates the stats accordingly.
+        '''
+        if random.random() < ASSIST_CHANCE:
             assister = weighted_random_key(off_team.ast_distribution_pos)
-        result[assister][2] += 1
+            while assister == shooter:
+                assister = weighted_random_key(off_team.ast_distribution_pos)
+            result[assister][2] += 1
 
-def handle_rebound(type, team, result):
-    '''
-    Updates the rebounding stats.
-    '''
-    if type == 'oreb':
-        rebounder = weighted_random_key(team.oreb_distribution_pos)
-        result[rebounder][2] += 1
-    else:
-        rebounder = weighted_random_key(team.dreb_distribution_pos)
-        result[rebounder][1] += 1
-```
+    def handle_rebound(type, team, result):
+        '''
+        Updates the rebounding stats.
+        '''
+        if type == 'oreb':
+            rebounder = weighted_random_key(team.oreb_distribution_pos)
+            result[rebounder][2] += 1
+        else:
+            rebounder = weighted_random_key(team.dreb_distribution_pos)
+            result[rebounder][1] += 1
+    </code></pre>
 
-These select a player using the `weighted_random_key` function, which picks according to a distribution of probabilities for the players on the team.  If your probability is relatively large compared to your teammates, you are more likely to be selected by the function.
+    <p>These select a player using the <code>weighted_random_key</code> function, which picks according to a distribution of probabilities for the players on the team. If your probability is relatively large compared to your teammates, you are more likely to be selected by the function.</p>
 
-```python
-def weighted_random_key(prob_dict):
-    '''
-    Pick a random key from a dictionary of probabilities.
-    '''
-    # generate a random number
-    rand_num = random.random()
-    cumulative_probability = 0.0
+    <pre><code class="python">
+    def weighted_random_key(prob_dict):
+        '''
+        Pick a random key from a dictionary of probabilities.
+        '''
+        # generate a random number
+        rand_num = random.random()
+        cumulative_probability = 0.0
 
-    # iterate through the dictionary
-    for key, probability in prob_dict.items():
-        cumulative_probability += probability
-        # check if the random number is less than the cumulative probability
-        if rand_num < cumulative_probability:
-            return key
-```
+        # iterate through the dictionary
+        for key, probability in prob_dict.items():
+            cumulative_probability += probability
+            # check if the random number is less than the cumulative probability
+            if rand_num < cumulative_probability:
+                return key
+    </code></pre>
 
+    <p>We also initialize the stats for that possession with an <code>initialize_stats</code> function.</p>
 
-We also initialize the stats for that possession with an `initialize_stats` function.
+    <pre><code class="python">
+    def initialize_stats():
+        '''
+        Initializes a dictionary of stats for each position on a single possession.
+        [PTS, DREB, OREB, AST, 2PM, 2PA, 3PM, 3PA, STL, BLK, TO]
+        '''
+        return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C']}
+    </code></pre>
 
-```python
-def initialize_stats():
-    '''
-    Initializes a dictionary of stats for each position on a single posession.
-    [PTS, DREB, OREB, AST, 2PM, 2PA, 3PM, 3PA, STL, BLK, TO]
-    '''
-    return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C']}
-```
+    <p>The <code>possession</code> function proceeds through a possession, calling the above functions when appropriate. It randomly selects a player from the team to take a shot; the random selection is weighted by the players' field goal percentages, i.e. if you are a better shooter, you are more likely to be the one to take the shot. The function also allows for the possibility of a turnover, and for offensive rebounds.</p>
 
-The `possession` function proceeds through a possession, calling the above functions when appropriate.  It randomly selects a player from the team to take a shot; the random selection is weighted by the players' field goal percentages, i.e. if you are a better shooter, you are more likely to be the one to take the shot.  The function also allows for the possibility of a turnover, and for offensive rebounds.
+    <pre><code class="python">
+    def possession(off_team, def_team):
+        '''
+        Simulates a possession and returns the players' stats.
+        '''
+        # initialize who will have the ball on the next possession
+        next_team = def_team
+        # initialize stats for this possession
+        off_result, def_result = initialize_stats(), initialize_stats()
 
-```python
-def possession(off_team, def_team):
-    '''
-    Simulates a possession and returns the players' stats.
-    '''
-    # initialize who will have the ball on the next possession
-    next_team = def_team
-    # initialize stats for this possession
-    off_result, def_result = initialize_stats(), initialize_stats()
+        # check for a turnover
+        if random.random() < TURNOVER_CHANCE:
+            handle_steal(def_team, def_result)
+            handle_turnover(off_team, off_result)
+            return off_result, def_result, next_team
 
-    # check for a turnover
-    if random.random() < TURNOVER_CHANCE:
-        handle_steal(def_team, def_result)
-        handle_turnover(off_team, off_result)
+        # determine who will shoot the ball
+        shooter = weighted_random_key(off_team.shot_distribution_pos)
+        # decide whether they attempt a two or a three
+        shooting_percentages = {2: off_team.positions_dict[shooter].expected_stats['fg2'], 3: off_team.positions_dict[shooter].expected_stats['fg3']}
+        shooting_percentages = normalize_dict(shooting_percentages)
+        shot_worth = weighted_random_key(shooting_percentages)
+
+        # check for a made shot
+        if handle_shot(off_team, shooter, shot_worth, off_result):
+            handle_assist(off_team, shooter, off_result)
+            return off_result, def_result, next_team
+
+        # check for block
+        handle_block(def_team, def_result)
+
+        # check for offensive rebound
+        if random.random() < OFF_REBOUND_CHANCE_BASE + OFF_REBOUND_BUFF_FACTOR * ((off_team.expected_oreb / def_team.expected_dreb) - 1):
+            handle_rebound('oreb', off_team, off_result)
+            next_team = off_team
+        # assign defensive rebound
+        else:
+            handle_rebound('dreb', def_team, def_result)
+
         return off_result, def_result, next_team
-    
-    # determine who will shoot the ball
-    shooter = weighted_random_key(off_team.shot_distribution_pos)
-    # decide whether they attempt a two or a three
-    shooting_percentages = {2: off_team.positions_dict[shooter].expected_stats['fg2'], 3: off_team.positions_dict[shooter].expected_stats['fg3']}
-    shooting_percentages = normalize_dict(shooting_percentages)
-    shot_worth = weighted_random_key(shooting_percentages)
+    </code></pre>
 
-    # check for a made shot
-    if handle_shot(off_team, shooter, shot_worth, off_result):
-        handle_assist(off_team, shooter, off_result)
-        return off_result, def_result, next_team
-    
-    # check for block
-    handle_block(def_team, def_result)
-    
-    # check for offensive rebound
-    if random.random() < OFF_REBOUND_CHANCE_BASE + OFF_REBOUND_BUFF_FACTOR * ((off_team.expected_oreb / def_team.expected_dreb) - 1):
-        handle_rebound('oreb', off_team, off_result)
-        next_team = off_team
-    # assign defensive rebound
-    else:
-        handle_rebound('dreb', def_team, def_result)
-    
-    return off_result, def_result, next_team
-```
+    <p>Simulating a full game, then, simply requires us to simulate many possessions and keep track of the players' stats along the way.</p>
 
-Simulating a full game, then, simply requires us to simulate many possessions, and keep track of the players' stats along the way.
+    <pre><code class="python">
+    class game:
+        '''
+        Simulates a game by simulating a number of possessions between two teams.
+        '''
+        def __init__(self, team1, team2):
+            self.team1 = team1
+            self.team2 = team2
 
-```python
-class game:
-    '''
-    Simulates a game by simulating a number of possessions between two teams.
-    '''
-    def __init__(self, team1, team2):
-        self.team1 = team1
-        self.team2 = team2
+        def initialize_box_score(self):
+            return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C', 'Team']}
 
-    def initialize_box_score(self):
-        return {pos: [0] * 11 for pos in ['PG', 'SG', 'SF', 'PF', 'C', 'Team']}
+        def update_box_score(self, box_score, position_stats):
+            for position, stats in position_stats.items():
+                for i in range(11):
+                    box_score[position][i] += stats[i]
 
-    def update_box_score(self, box_score, position_stats):
-        for position, stats in position_stats.items():
+        def sum_team_stats(self, box_score):
             for i in range(11):
-                box_score[position][i] += stats[i]
+                box_score['Team'][i] = sum(stats[i] for position, stats in box_score.items() if position != 'Team')
 
-    def sum_team_stats(self, box_score):
-        for i in range(11):
-            box_score['Team'][i] = sum(stats[i] for position, stats in box_score.items() if position != 'Team')
+        def play_game(self):
+            team1_box_score = self.initialize_box_score()
+            team2_box_score = self.initialize_box_score()
 
-    def play_game(self):
-        team1_box_score = self.initialize_box_score()
-        team2_box_score = self.initialize_box_score()
+            num_possessions = int(np.ceil(sum([self.team1.pace, self.team2.pace]) / 2.0))
 
-        num_possessions = int(np.ceil(sum([self.team1.pace, self.team2.pace]) / 2.0))
+            off_team, def_team = self.team1, self.team2
+            for _ in range(num_possessions * 2):
+                off_result, def_result, next_team = possession(off_team, def_team)
 
-        off_team, def_team = self.team1, self.team2
-        for _ in range(num_possessions * 2):
-            off_result, def_result, next_team = possession(off_team, def_team)
+                if off_team == self.team1:
+                    self.update_box_score(team1_box_score, off_result)
+                    self.update_box_score(team2_box_score, def_result)
+                else:
+                    self.update_box_score(team2_box_score, off_result)
+                    self.update_box_score(team1_box_score, def_result)
 
-            if off_team == self.team1:
-                self.update_box_score(team1_box_score, off_result)
-                self.update_box_score(team2_box_score, def_result)
-            else:
-                self.update_box_score(team2_box_score, off_result)
-                self.update_box_score(team1_box_score, def_result)
+                off_team, def_team = next_team, self.team1 if next_team == self.team2 else self.team2
 
-            off_team, def_team = next_team, self.team1 if next_team == self.team2 else self.team2
+            self.sum_team_stats(team1_box_score)
+            self.sum_team_stats(team2_box_score)
 
-        self.sum_team_stats(team1_box_score)
-        self.sum_team_stats(team2_box_score)
+            return team1_box_score, team2_box_score
+    </code></pre>
 
-        return team1_box_score, team2_box_score
-```
+    <h3>Simulating a season</h3>
 
-Simulating a season is also straightforward.  We enumerate all the matchups that will be played, initialize a DataFrame to store the stats for each game, and then simulate all the games.  We also keep track of the winners and losers of each game so that league standings can be recorded.
+    <p>Simulating a season is also straightforward.  We enumerate all the matchups that will be played, initialize a DataFrame to store the stats for each game, and then simulate all the games.  We also keep track of the winners and losers of each game so that league standings can be recorded.</p>
 
-```python
-class season:
+    <pre><code class="python">
+    class season:
     '''
     Simulates a season by simulating all games between all teams.  Each team plays every other team twice.
     '''
@@ -519,62 +497,61 @@ class season:
             self.update_team_records(team1, team2, team1_stats, team2_stats)
 
         self.team_records = {key: value for key, value in sorted(self.team_records.items(), key=lambda item: item[1][0], reverse=True)}
-```
+    </code></pre>
 
-For a league with 30 teams, we can then simply run:
+    <p>For a league with 50 teams, we can then simply run:</p>
 
-```python
-s = season(30)
-s.play_season()
-```
+    <pre><code class="python">
+    s = season(50)
+    s.play_season()
+    </code></pre>
 
-The box score data is now ready for analysis.
+    <p>The box score data is now ready for analysis.</p>
 
-## <ins>Data analysis using SQL</ins>
+  </div>
+</div>
 
-I used Amazon Web Services' RDS to host the database, and the free software DBeaver as the SQL client.  Uploading the data from the csv files and setting up the tables was straightforward using these.
+<div class="collapse" id="SQL-queries">
+  <div class="card card-body">
+    <pre><code class="sql">
+    CREATE TABLE track_mvps_over_season AS
+    WITH 
+    FantasyScores AS (
+        SELECT GAME_ID, GAME_DATE, PLAYER_ID, fantasy_score 
+        FROM game_stats
+        WHERE `POSITION` != 'Team'
+    ),
+    RollingAverages AS (
+        SELECT GAME_DATE, PLAYER_ID,
+            AVG(fantasy_score) OVER (
+                PARTITION BY PLAYER_ID
+                ORDER BY GAME_DATE
+                ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW 
+            ) AS rolling_avg_fantasy_score
+        FROM FantasyScores
+    ),
+    RankedScores AS (
+        SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, RANK() OVER (
+                PARTITION BY GAME_DATE
+                ORDER BY rolling_avg_fantasy_score DESC
+            ) AS daily_rank
+        FROM RollingAverages
+    ),
+    TopFiveScoresEndOfSeason AS (
+        SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, daily_rank
+        FROM RankedScores
+        WHERE daily_rank <= 5 AND GAME_DATE = (SELECT MAX(GAME_DATE) FROM RankedScores)
+        ORDER BY GAME_DATE, daily_rank
+    )
+    SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, daily_rank
+    FROM RankedScores
+    WHERE PLAYER_ID IN (SELECT PLAYER_ID FROM TopFiveScoresEndOfSeason);
+    </code></pre>
+  </div>
+</div>
 
-As an example query, we can look for the instances where a player under 190.5 cm in height scored more than 30 points, and list those players by the number of times they achieved this feat.
-
-```sql
-WITH short_thirty_bombs AS
-(
-	SELECT g.player_id AS Player_ID, g.team_name AS Team_Name, g.pos_name AS Pos_Name, g.PTS AS Points
-	FROM `game_stats`  AS g
-	INNER JOIN `player_attributes` AS p 
-	ON g.player_id = p.player_id
-	WHERE g.PTS > 29.0 AND p.height < 190.5
-)
-SELECT COUNT(Player_ID) AS Num_Thirty_Bombs, Team_Name, Pos_Name
-FROM short_thirty_bombs
-GROUP BY Team_Name, pos_name 
-ORDER BY Num_Thirty_Bombs DESC
-```
-
-The output from the query is:
-
-```
-6	Raccoons	pg
-6	Cyclones	pg
-5	Cobras	pg
-4	Lions	pg
-4	Dragons	pg
-4	Knights	pg
-4	Cheetahs	pg
-3	Giants	pg
-3	Tornadoes	pg
-3	Wolves	sg
-2	Zebras	pg
-2	Panthers	sg
-2	Bison	pg
-2	Kangaroos	sg
-2	Sharks	sg
-2	Wildcats	sg
-1	Aviators	pg
-1	Panthers	pg
-1	Falcons	pg
-1	Tortoises	sg
-1	Rhinos	pg
-```
-
-The Raccoons and Cyclones point guards were the leaders, with 6 instances each of scoring more than 30 points while being shorter than 190.5 cm.
+<div class="collapse" id="visualization">
+  <div class="card card-body">
+    A processing function can filter out outliers.
+  </div>
+</div>
