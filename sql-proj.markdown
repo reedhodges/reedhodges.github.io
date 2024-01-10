@@ -8,7 +8,7 @@ Recently I wanted to learn how to run SQL queries.  In deciding which data to us
 
 I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.  
 
-Click the buttons below to learn about the various components of this project.
+Select the buttons below to reveal information for the components of the project you'd like to learn about. 
 
 <div class="btn-group" role="group" aria-label="button group">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
