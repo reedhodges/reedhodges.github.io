@@ -17,7 +17,7 @@ You can download a pdf of my resume [here](https://raw.githubusercontent.com/ree
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
     Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-    <pre><code class="language-python">
+    <pre><code class="python">
 import pandas as pd
     </code></pre>
   </div>
