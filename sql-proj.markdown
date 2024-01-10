@@ -8,6 +8,7 @@ Recently I wanted to learn how to run SQL queries.  In deciding which data to us
 
 I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.  
 
+<div id="button-container">
 <p class="d-inline-flex gap-1">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
     Dataset
@@ -554,4 +555,6 @@ I decided this also would be a good opportunity to further practice my python sk
   <div class="card card-body">
     A processing function can filter out outliers.
   </div>
+</div>
+
 </div>
