@@ -8,7 +8,7 @@ permalink: /sql-project/
 <div class='tableauPlaceholder' id='viz1704996688633' style='position: relative'><noscript><a href='#'><img alt='Dashboard 2 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sa&#47;sample_upload_wb&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='sample_upload_wb&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;sa&#47;sample_upload_wb&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1704996688633');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 {% endraw %}
 
-test Recently I wanted to learn how to run SQL queries.  In deciding which data to use, I wanted a dataset where I'd have some level of intuition for what the data points mean.  An obvious choice is sports statistics, and basketball is the sport with which I'm most familiar.  
+test2 Recently I wanted to learn how to run SQL queries.  In deciding which data to use, I wanted a dataset where I'd have some level of intuition for what the data points mean.  An obvious choice is sports statistics, and basketball is the sport with which I'm most familiar.  
 
 I decided this also would be a good opportunity to further practice my python skills, particularly in object-oriented programming. I wrote a program that would simulate a basketball season in an imaginary league with 30 teams, each playing every other team twice.  It would store the box score for each game in a csv file, which I could then store in an SQL database and run queries against.  
 
@@ -88,9 +88,9 @@ Select the buttons below to reveal information for the components of the project
 
     <p>Click on the histograms to be redirected to an interactive version where you can select/deselect different positions.</p>
 
-    <p><a href="html_files/fg2_fig.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg2_fig.png" alt="FG2% plot" style="border: 2px solid  gray;"></a></p>
+    <p><a href="https://reedhodges.github.io/html_files/fg2_fig.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg2_fig.png" alt="FG2% plot" style="border: 2px solid  gray;"></a></p>
 
-    <p><a href="html_files/fg3_fig.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg3_fig.png" alt="FG3% plot" style="border: 2px solid  gray;"></a></p>
+    <p><a href="https://reedhodges.github.io/html_files/fg3_fig.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fg3_fig.png" alt="FG3% plot" style="border: 2px solid  gray;"></a></p>
 
     <p>It is reasonable to say these follow a normal distribution. The means and standard deviations are:</p>
 
@@ -109,9 +109,9 @@ Select the buttons below to reveal information for the components of the project
 
     <p>The rebounds, assists, steals, blocks, and turnovers, on the other hand, appear to follow a Poisson distribution. This makes sense, because it is reasonable to approximate that these events (i.e. rebound or assist) occur at a constant mean rate and independently of the time since the last event.</p>
 
-    <p><a href="html_files/fig_reb.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_reb_by_pos.png" alt="Reb plot" style="border: 2px solid  gray;"></a></p>
+    <p><a href="https://reedhodges.github.io/html_files/fig_reb.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_reb_by_pos.png" alt="Reb plot" style="border: 2px solid  gray;"></a></p>
 
-    <p><a href="html_files/fig_ast.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_ast_by_pos.png" alt="Ast plot" style="border: 2px solid gray;"></a></p>
+    <p><a href="https://reedhodges.github.io/html_files/fig_ast.html"><img src="https://raw.githubusercontent.com/reedhodges/bball_league/main/images/fig_ast_by_pos.png" alt="Ast plot" style="border: 2px solid gray;"></a></p>
 
     <p>The means for these distributions are:</p>
 
