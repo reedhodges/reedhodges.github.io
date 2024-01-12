@@ -508,52 +508,74 @@ Select the buttons below to reveal information for the components of the project
     s.play_season()
     </code></pre>
 
-    <p>The box score data is now ready for analysis.</p>
+    <p>The box score data is now ready for analysis. I uploaded the csv-file output from my Python simulation to a MySQL server hosted on an Amazon Web Servcies RDS instance, and used the free software DBeaver to interact with the server.</p>
 
   </div>
 </div>
 
 <div class="collapse" id="SQL-queries">
   <div class="card card-body">
+    <p>Suppose we want to calculate a fantasy score for each player in each game.  We can alter the SQL table with the following sequence of commands to do so.</p>
     <pre><code class="sql">
-    CREATE TABLE track_mvps_over_season AS
-    WITH 
-    FantasyScores AS (
+    ALTER TABLE game_stats 
+    ADD fantasy_score INT;
+    UPDATE game_stats
+    SET fantasy_score = PTS + FG3M - FG2A - FG3A + 2*FG2M + 2*FG3M + OREB + DREB + 2*AST + 4*STL + 4*BLK - 2*`TO`;
+    </code></pre>
+    <p>We might want to plot a rolling average of a player's fantasy score as the season progresses.  To do this, we can make use of a common table expression (CTE) to remove the 'Team' stats from the calculation.</p>
+    <pre><code class="sql">
+    WITH FantasyScores AS (
         SELECT GAME_ID, GAME_DATE, PLAYER_ID, fantasy_score 
         FROM game_stats
         WHERE `POSITION` != 'Team'
     ),
-    RollingAverages AS (
-        SELECT GAME_DATE, PLAYER_ID,
-            AVG(fantasy_score) OVER (
-                PARTITION BY PLAYER_ID
-                ORDER BY GAME_DATE
-                ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW 
-            ) AS rolling_avg_fantasy_score
-        FROM FantasyScores
+    SELECT GAME_DATE, PLAYER_ID,
+        AVG(fantasy_score) OVER (
+            PARTITION BY PLAYER_ID
+            ORDER BY GAME_DATE
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW 
+        )
+    FROM FantasyScores
+    </code></pre>
+    <p>We can also add a column of data to each row in the game_stats table that indicates whether that player won or lost the game.  This is something that could have been done in Python, but I didn't realize I'd want it until after I uploaded the data to the SQL server.  The process makes use of CTEs and the joining of tables.</p>
+    <pre><code class="sql">
+    WITH 
+    TeamPoints AS (
+        SELECT GAME_ID, TEAM_ID, SUM(PTS) AS PointsFor
+        FROM game_stats
+        WHERE `POSITION` != 'Team'
+        GROUP BY GAME_ID, TEAM_ID
     ),
-    RankedScores AS (
-        SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, RANK() OVER (
-                PARTITION BY GAME_DATE
-                ORDER BY rolling_avg_fantasy_score DESC
-            ) AS daily_rank
-        FROM RollingAverages
+    TotalPoints AS (
+        SELECT GAME_ID, SUM(PTS) AS PointsForPlusPointsAgainst
+        FROM game_stats
+        WHERE `POSITION` != 'Team'
+        GROUP BY GAME_ID
     ),
-    TopFiveScoresEndOfSeason AS (
-        SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, daily_rank
-        FROM RankedScores
-        WHERE daily_rank <= 5 AND GAME_DATE = (SELECT MAX(GAME_DATE) FROM RankedScores)
-        ORDER BY GAME_DATE, daily_rank
+    JoinedTables AS (
+        SELECT a.GAME_ID AS GAME_ID, a.TEAM_ID AS TEAM_ID, a.PointsFor AS PointsFor, b.PointsForPlusPointsAgainst AS PointsForPlusPointsAgainst
+        FROM TeamPoints AS a
+        INNER JOIN TotalPoints AS b ON a.GAME_ID = b.GAME_ID
+    ),
+    WLDTable AS 
+    (
+        SELECT GAME_ID, TEAM_ID, PointsFor, PointsForPlusPointsAgainst, 
+            CASE 
+                WHEN PointsFor > PointsForPlusPointsAgainst / 2 THEN 1
+                WHEN PointsFor < PointsForPlusPointsAgainst / 2 THEN 0
+                WHEN PointsFor = PointsForPlusPointsAgainst / 2 THEN 2
+            END AS WLD
+        FROM JoinedTables
     )
-    SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, daily_rank
-    FROM RankedScores
-    WHERE PLAYER_ID IN (SELECT PLAYER_ID FROM TopFiveScoresEndOfSeason);
+    UPDATE game_stats gs
+    JOIN WLDTable wld ON gs.GAME_ID = wld.GAME_ID AND gs.TEAM_ID = wld.TEAM_ID
+    SET gs.WLD = wld.WLD;
     </code></pre>
   </div>
 </div>
 
 <div class="collapse" id="visualization">
   <div class="card card-body">
-    A processing function can filter out outliers.
+    <p> Check out the <a href="https://reedhodges.github.io/html_files/bball_league_story.html">Tableau story</a> I created with the data resulting from my Python simulation.</p>
   </div>
 </div>

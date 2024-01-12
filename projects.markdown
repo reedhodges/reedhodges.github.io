@@ -8,17 +8,17 @@ Below I list four projects I have worked on in my career since the start of unde
 
 Projects 1, 2, and 3 have dedicated pages on this website, showcasing skills and discussing their compuational aspects.  Click on their titles to learn more.
 
-### 1. [J/psi production](jpsi-ml-proj.markdown)
-A **work-in-progress** portfolio project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
+### 1. [SQL, Python, and Tableau basketball stats project](sql-proj.markdown)
+A portfolio project where I generate statistics for a fake basketball league in Python, and run SQL queries against the resulting data.  The data is visualized in a Tableau story.
 
-Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
+Github repository: [[1](https://github.com/reedhodges/bball_league)]
 
 <br />
 
-### 2. [SQL basketball stats project](sql-proj.markdown)
-A **work-in-progress** portfolio project where I generate statistics for a fake basketball league in Python, and run SQL queries against the resulting data.
+### 2. [J/psi production](jpsi-ml-proj.markdown)
+A **work-in-progress** portfolio project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
 
-Github repository: [[1](https://github.com/reedhodges/bball_league)]
+Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
 
 <br />
 

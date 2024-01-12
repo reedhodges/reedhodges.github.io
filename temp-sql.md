@@ -118,3 +118,37 @@ SELECT GAME_DATE, PLAYER_ID, rolling_avg_fantasy_score, daily_rank
 FROM RankedScores
 WHERE PLAYER_ID IN (SELECT PLAYER_ID FROM TopFiveScoresEndOfSeason);
 ```
+
+```sql
+WITH 
+TeamPoints AS (
+	SELECT GAME_ID, TEAM_ID, SUM(PTS) AS PointsFor
+	FROM game_stats
+	WHERE `POSITION` != 'Team'
+	GROUP BY GAME_ID, TEAM_ID
+),
+TotalPoints AS (
+	SELECT GAME_ID, SUM(PTS) AS PointsForPlusPointsAgainst
+	FROM game_stats
+	WHERE `POSITION` != 'Team'
+	GROUP BY GAME_ID
+),
+JoinedTables AS (
+	SELECT a.GAME_ID AS GAME_ID, a.TEAM_ID AS TEAM_ID, a.PointsFor AS PointsFor, b.PointsForPlusPointsAgainst AS PointsForPlusPointsAgainst
+	FROM TeamPoints AS a
+	INNER JOIN TotalPoints AS b ON a.GAME_ID = b.GAME_ID
+),
+WLDTable AS 
+(
+	SELECT GAME_ID, TEAM_ID, PointsFor, PointsForPlusPointsAgainst, 
+		CASE 
+			WHEN PointsFor > PointsForPlusPointsAgainst / 2 THEN 1
+			WHEN PointsFor < PointsForPlusPointsAgainst / 2 THEN 0
+			WHEN PointsFor = PointsForPlusPointsAgainst / 2 THEN 2
+		END AS WLD
+	FROM JoinedTables
+)
+UPDATE game_stats gs
+JOIN WLDTable wld ON gs.GAME_ID = wld.GAME_ID AND gs.TEAM_ID = wld.TEAM_ID
+SET gs.WLD = wld.WLD;
+```
