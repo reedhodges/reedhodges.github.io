@@ -60,7 +60,7 @@ Minor: Mathematics <br>
 <br>
 
 ## Languages
-Python, C, Fortran, R, HTML
+Python, SQL, C, Fortran, R, HTML
 
 ## Software, Applications, and Development Tools
 Github, Pandas, Numpy, Linux/Unix, Tableau, Mathematica, LaTeX, MATLAB, Microsoft Suite
