@@ -63,7 +63,7 @@ Minor: Mathematics <br>
 Python, SQL, C, Fortran, R, HTML
 
 ## Software, Applications, and Development Tools
-Github, Pandas, Numpy, Linux/Unix, Tableau, Mathematica, LaTeX, MATLAB, Microsoft Suite
+Github, Pandas, Numpy, Linux/Unix, Tableau, AWS, Mathematica, LaTeX, MATLAB, Microsoft Suite
 
 ## Skills
 Analytical Thinking, Problem Solving, Data Analysis, Data Visualization, Critical Thinking,
