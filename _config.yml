@@ -21,8 +21,7 @@
 title: Reed Hodges
 email: reed.hodges@duke.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  Physics graduate student at Duke University.  Studying effective field theory
-  for systems with heavy quarks.
+  Physics graduate student at Duke University.  Pursuing opportunities in the data science field.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: reedmhodges

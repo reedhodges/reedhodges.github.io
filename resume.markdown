@@ -8,21 +8,21 @@ permalink: /resume/
 
 ## Education
 
-### Ph.D. in Physics
-Concentration: Theoretical Nuclear/Particle Physics,
+**Ph.D. in Physics** <br>
+Concentration: Theoretical Nuclear/Particle Physics <br>
 *Duke University, expected 2024*
 
-<br />
+<br>
 
-### B.S. in Physics
-Minor: Mathematics,
+**B.S. in Physics**, *summa cum laude* <br>
+Minor: Mathematics <br>
 *Georgia Southern University, 2018*
 
-<br />
+<br>
 
 ## Relevant Experience
 
-### Graduate Research Assistant
+**Graduate Research Assistant** <br>
 *Duke University / Durham, NC / 2018-present*
 - Adapted models to make qualitative and quantitative predictions for the results of experiments at particle colliders
 - Wrote programs to test models and hypotheses via numerical computation and data visualization
@@ -34,36 +34,36 @@ Minor: Mathematics,
 
 <br />
 
-### Graduate Teaching Assistant
+**Graduate Teaching Assistant** <br>
 *Duke University / Durham, NC / 2018-2021*
 - Translated complex physics concepts into clear, understandable terms for students
 - Modeled and taught best practices in scientific data collection, ensuring accuracy and reliability, while encouraging a data-driven mindset and approach among students
 - Provided comprehensive instruction on utilizing specialized data collection software, enabling students to gather and manage data efficiently and accurately
 
-<br />
+<br>
 
-### Undergraduate Research Assistant
+**Undergraduate Research Assistant** <br>
 *Georgia Southern University / Statesboro, GA / 2015-2018*
 - Developed and executed computer programs to model and understand how special micrometer-sized materials interact with light
 - Conducted research and iterative testing to identify a design of a micrometer-sized sphere that has near-invisibility when exposed to light
 - Optimized code for efficiency and performance to meet high computational demands
 - Published papers in peer-reviewed journals and presented research findings at regional and national conferences
 
-<br />
+<br>
 
-### Blue Waters Petascale Computing Intern
+**Blue Waters Petascale Computing Intern** <br>
 *Shodor Education Foundation / 2016-2017*
 - Completed an intensive educational program on parallel computing at the National Center for Supercomputing Applications, where I gained knowledge on parallel programming interfaces such as OpenMP, MPI, and CUDA
 - Applied parallel computing techniques to optimize my undergraduate research simulations, achieving significant improvements in computational speed
 - Gained practical experience with the Blue Waters supercomputer, enhancing research outcomes through high-performance computing
 
-<br />
+<br>
 
 ## Languages
 Python, C, Fortran, R, HTML
 
 ## Software, Applications, and Development Tools
-Github, Pandas, Numpy, Linux/Unix, Mathematica, LaTeX, MATLAB, Microsoft Suite
+Github, Pandas, Numpy, Linux/Unix, Tableau, Mathematica, LaTeX, MATLAB, Microsoft Suite
 
 ## Skills
 Analytical Thinking, Problem Solving, Data Analysis, Data Visualization, Critical Thinking,
