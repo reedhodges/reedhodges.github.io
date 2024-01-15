@@ -40,33 +40,36 @@ The repository for this project can be found [here](https://github.com/reedhodge
 
 <p>One of the processes in which a J/ψ can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/ψ.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.</p>
 
-<p>Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <em>parton distribution functions</em>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.</p>
+<p>Why might we be interested in this?</p>  
+
+<ul>
+<li><b>Parton distribution functions</b>: Clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <em>parton distribution functions</em>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.</li>
+<li><b>Differentiating production mechanisms</b>: There are a couple different ways you can produce a J/ψ in semi-inclusive deep inelastic scattering.  One is called photon-gluon fusion, where a gluon inside the proton and a photon emitted by the electron work together to create a charm/anticharm quark pair.  Another is quark fragmentation, where a light quark inside the proton emits a gluon itself, which leads to the production of the charm/anticharm pair.  These different production mechanisms are sensitive to different physical parameters, some of which we don't understand well.  If we want to learn more about those parameters through experiments, it's useful to learn more about the differences between the production mechanisms from a theoretical perspective.</li>
+</ul>
 
 <h3>Project Objectives</h3>
 
 <p>This portfolio project focuses on the application of machine learning techniques to a specialized domain of particle physics, specifically analyzing J/ψ production cross sections. The dataset comprises several measurements of J/ψ production cross sections as a function of four kinematic variables. The primary goal is to leverage Python's machine learning ecosystem to extract meaningful insights and predictions from this complex dataset.</p>
 
-<h4>Specific Objectives</h4>
-
-<h5>1. Data Visualization and Analysis</h5>
+<h4>1. Data Visualization and Analysis</h4>
 <ul>
     <li><strong>Goal:</strong> Conduct a comprehensive exploratory data analysis to uncover patterns, correlations, and distributions within the data.</li>
     <li><strong>Methodology:</strong> Employ Python's visualization libraries to create insightful visualizations that inform subsequent modeling choices and provide an intuitive understanding of the dataset's characteristics.</li>
 </ul>
 
-<h5>2. Predictive Modeling</h5>
+<h4>2. Predictive Modeling</h4>
 <ul>
     <li><strong>Goal:</strong> Develop and train machine learning models to accurately predict the J/ψ production cross section based on the provided kinematic variables.</li>
     <li><strong>Methodology:</strong> Experiment with various regression models to determine the most effective approach for this dataset.</li>
 </ul>
 
-<h5>3. Feature Importance Analysis</h5>
+<h4>3. Feature Importance Analysis</h4>
 <ul>
     <li><strong>Goal:</strong> Identify and quantify the influence of each kinematic variable on the J/ψ production cross section.</li>
     <li><strong>Methodology:</strong> Utilize feature importance metrics from machine learning models and techniques like SHAP values to understand the contribution of each variable to the model's predictions.</li>
 </ul>
 
-<h5>4. Anomaly Detection</h5>
+<h4>4. Anomaly Detection</h4>
 <ul>
     <li><strong>Goal:</strong> Detect and analyze anomalies in the J/ψ production cross section data to ensure the integrity and quality of the machine learning models.</li>
     <li><strong>Methodology:</strong> Implement unsupervised learning algorithms to identify outliers and unusual patterns in the dataset, aiding in data cleaning and preprocessing.</li>
@@ -104,6 +107,9 @@ Export[NotebookDirectory[]<>"pdf_data/dPDF.csv",dPDF]
 <p>Each PDF is evaluated for 200<sup>2</sup> = 40,000 points. The <code>.csv</code> files can be imported as a pandas DataFrame, and we can use <code>scipy</code> to create an interpolator for other values of <em>x</em> and <em>Q</em>.</p>
 
 <pre><code class="python">
+import pandas as pd
+from scipy.interpolate import RegularGridInterpolator
+
 function create_interpolator(df):
     x_values = sorted(df['x'].unique())
     Q_values = sorted(df['Q'].unique())
@@ -114,6 +120,120 @@ function create_interpolator(df):
 <p>Here is a log plot that shows the momentum fraction times the PDFs, <em>x*f(x)</em>, as a function of <em>x</em>. There are three types of partons plotted here: up quark, down quark, and gluon.</p>
 
 <img src="https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png" alt="PDFs Plot">
+
+<h3>Production mechanisms</h3>
+
+<p>My co-authors and I discuss the explicit theoretical expressions for the J/ψ production cross sections in our papers, and the physics is beyond the scope of this webpage, so here we merely talk about their implementation in the Python code.  We established in the introduction that we will look at two different production mechanisms.  One of them, photon-gluon fusion, actually has three sub-types that depend on the angular momentum state of the J/ψ and whether or not one of the charm/anticharm quarks radiates a gluon.  Furthermore, we will look at production of the J/ψ itself in two different polarization states: unpolarized and longitudinally polarized.  This has to do with which direction its spin is pointing relative to its motion.  So in all, considering these options, there are eight different cross sections we will investigate.  Here is how we can implement the production of unpolarized J/ψ via light quark fragmentation, using nested Python classes.</p>
+
+<pre><code class="python">
+interpolators = {
+    'u_interp': create_interpolator(df_u),
+    'd_interp': create_interpolator(df_d),
+    'g_interp': create_interpolator(df_g)
+}
+
+# D1 : unpolarized quark, unpolarized J/psi
+def D1(z,kT,mu):
+    const = (2*alpha_s(mu)**2*O3S1OCT) / (9*PI*NC*M**3*z)
+    num = kT**2*z**2*(z**2-2*z+2) + 2*M**2*(z-1)**2
+    den = (z**2*kT**2+M**2*(1-z))**2
+    return const * num / den
+
+# cross sections differnetial in x, z, Q, PT
+class differential_cross_section:
+    def __init__(self, S: float, O3S1SING: float, O1S0OCT: float, O3P0OCT: float, u_interp, d_interp, g_interp):
+        self.S: float = S
+        self.O3S1OCT: float = O3S1OCT
+        self.O3S1SING: float = O3S1SING
+        self.O1S0OCT: float = O1S0OCT
+        self.O3P0OCT: float = O3P0OCT
+        self.ff = self.FF(self)
+        self.pgf = self.PGF(self)
+
+    # cross sections for light quark fragmentation
+    class FF:
+        def __init__(self, parent):
+            self.parent = parent
+        
+        # unpolarized J/psi
+        def U(x, z, Q, PT):
+            y = Q**2/(x*S)
+            const = TO_PB*((4*PI*ALPHA_EM**2)/(Q**4)) * (1-y+y**2/2)
+            pdf = (2./3.)**2*interpolators['u_interp']((x,Q)) + (1./3.)**2*interpolators['d_interp']((x,Q))
+            return const*pdf*3*D1(z,PT,M)
+</code></pre>
+
+<p>The function <pre>D1</pre> is called a fragmentation function, and it describes the likelihood that a particular parton will fragment to form a J/ψ.  There are 18 such fragmentation functions, considering different polarizations for the partons and the J/ψ, and 17 of them were written down explicitly for the first time by my collaborators and I in our paper.</p>  
+
+<p>Using similar functions, we can then create a DataFrame with all eight different production cross sections as a function of the four kinematic variables.</p>
+
+<pre><code class="python">
+d_sigma = differential_cross_section(S, O3S1OCT, O3S1SING, O1S0OCT, O3P0OCT)
+    
+domains = {
+    'x_domain': np.linspace(0.1, 0.99, 25),
+    'z_domain': np.linspace(0.1, 0.8, 25),
+    'Q_domain': np.linspace(10., 50., 25),
+    'PT_domain': np.linspace(0.01, 6., 75)
+}
+
+x_grid, z_grid, Q_grid, PT_grid = np.meshgrid(
+    domains['x_domain'], domains['z_domain'], domains['Q_domain'], domains['PT_domain']
+)
+
+# compute d_sigma contributions on the grid
+def compute_grid_values(d_sigma, x_grid, z_grid, Q_grid, PT_grid):
+    grid_values = {}
+    for process in ['FF', 'PGF']:
+        for pol in ['U', 'L']:
+            if process == 'FF':
+                key = f'oct3s1_{pol}_grid'
+                func = getattr(d_sigma.FF, pol)
+                grid_values[key] = func(x_grid.ravel(), z_grid.ravel(), Q_grid.ravel(), PT_grid.ravel())
+            elif process == 'PGF':
+                for ldme in ['oct1s0', 'oct3p0', 'sing3s1']:
+                    key = f'{ldme}_{pol}_grid'
+                    nested_class_instance = getattr(d_sigma.PGF, ldme)
+                    func = getattr(nested_class_instance, pol)
+                    grid_values[key] = func(x_grid.ravel(), z_grid.ravel(), Q_grid.ravel(), PT_grid.ravel())
+    return grid_values
+
+grid_values = compute_grid_values(d_sigma, x_grid, z_grid, Q_grid, PT_grid)
+
+data = {
+    'x': x_grid.ravel(),
+    'z': z_grid.ravel(),
+    'Q': Q_grid.ravel(),
+    'PT': PT_grid.ravel()
+}
+
+for key, value in grid_values.items():
+    data[key] = value
+
+df = pd.DataFrame(data)
+</code></pre>
+
+<p>There are some limitations on the allowed relationships between the kinematic variables, so let's remove the data points that violate those.</p>
+
+<pre><code class="python">
+# the proper domain for PT is actually a function of z and Q, 
+# so need to remove the ones that violate the domain.
+# first need to define the bins in z and Q
+def z_bin(z):
+    return np.piecewise(z, [z < 0.4, z >= 0.4], [0.1, 0.4])
+def Q_bin(Q):
+    return np.piecewise(Q, [Q < 30., Q >= 30.], [10., 30.])
+# apply these piecewise functions to the dataframe values
+z_bin_min = df['z'].apply(lambda x: z_bin(x))
+Q_bin_min = df['Q'].apply(lambda x: Q_bin(x))
+# define a condition on PT
+condition = df['PT'] <= z_bin_min * Q_bin_min / 2.
+# remove the rows that violate the condition
+df = df.loc[condition]
+</code></pre>
+
+<p>This is our starting dataset.</p>
+
 
   </div>
 </div>
