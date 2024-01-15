@@ -19,7 +19,7 @@ The repository for this project can be found [here](https://github.com/reedhodge
     Exploratory data analysis
   </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#predictive-modeling" aria-expanded="false" aria-controls="predictive-modeling">
-    Predicting modeling
+    Predictive modeling
   </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#feature-importance" aria-expanded="false" aria-controls="feature-importance">
     Feature importance
@@ -35,6 +35,8 @@ The repository for this project can be found [here](https://github.com/reedhodge
 
 <div class="collapse" id="introduction">
   <div class="card card-body">
+
+<h2>Introduction</h2>
 
 <p>The J/ψ meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. </p>
 
