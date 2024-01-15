@@ -6,15 +6,41 @@ permalink: /Jpsi-production-project/
 
 <span style="color:red">**Disclaimer:**</span> This is a toy project, intended as a way for me to build and exemplify skills in Python and machine learning, and not intended to be a proper scientific study.  I utilize actual expressions for the cross sections derived by me and my collaborators in two papers [[1](https://arxiv.org/pdf/2308.08605),[2](https://arxiv.org/pdf/2310.13737)] published in 2023, but I make no claims of scientific rigor in the scikit-learn analysis.  Furthermore, this project is a work-in-progress and I will continue to make updates/improvements as I learn more and improve my skills.
 
-## <ins>Introduction</ins>
+The repository for this project can be found [here](https://github.com/reedhodges/portfolio_Jpsi).
+
+<div class="btn-group" role="group" aria-label="button group">
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#introduction" aria-expanded="false" aria-controls="introduction">
+    Introduction
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
+    Dataset
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
+    Exploratory data analysis
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#predictive-modeling" aria-expanded="false" aria-controls="predictive-modeling">
+    Predicting modeling
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#feature-importance" aria-expanded="false" aria-controls="feature-importance">
+    Feature importance
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#anomaly-detection" aria-expanded="false" aria-controls="anomaly-detection">
+    Anomaly detection
+  </button>
+  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#conclusion" aria-expanded="false" aria-controls="conclusion">
+    Conclusion
+  </button>
+</div>
+
+
+<div class="collapse" id="introduction">
+  <div class="card card-body">
 
 The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
 
 One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.
 
 Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in *parton distribution functions*, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
-
-The repository for this project can be found [here](https://github.com/reedhodges/portfolio_Jpsi).
 
 ## <ins>Project Objectives</ins>
 
@@ -42,6 +68,12 @@ Understanding regions of phase space where cross sections are significant has wi
 - **Particle Collider Experiments:** Helps in predicting outcomes and planning experiments in particle colliders.
 - **Testing Theory:** Assists researchers in validating or refuting theoretical models.
 - **Advancing Physics:** Understanding particle interactions can lead to new discoveries.
+
+  </div>
+</div>
+
+<div class="collapse" id="dataset">
+  <div class="card card-body">
 
 ## <ins>Data Acquisition and Cleaning</ins>
 
@@ -76,6 +108,12 @@ Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as
 
 ![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
 
+  </div>
+</div>
+
+<div class="collapse" id="EDA">
+  <div class="card card-body">
+
 ## <ins>Exploratory Data Analysis</ins>
 
 The initial exploratory data analysis for this project was done in a [paper](https://arxiv.org/pdf/2310.13737) published by me and my collaborators.  Look at Figure 4 from that paper:
@@ -87,94 +125,5 @@ Here, we are plotting the cross section (\[sigma]) differential in the transvers
 - If you are interested in production via a gluon, look at larger values of *z*, but smaller values of *x* and *Q*
 - If you are interested in production via a quark, look at larger values of *x*
 
-## <ins>Feature Engineering and Selection</ins>
-**in progress**
-
-
-## <ins>Model Development with scikit-learn</ins>
-
-### Model Choice: Random Forest Regressor
-
-For this project, we've chosen the `RandomForestRegressor` from the Scikit-learn library. The Random Forest algorithm is an ensemble learning method, which combines multiple decision trees to produce a more accurate and robust model. It is well-suited for our dataset because:
-
-- It can handle high-dimensional data efficiently.
-- It provides a natural resistance to overfitting.
-- It offers insights into feature importance, allowing for a better understanding of our data.
-
-### Model Training
-
-The dataset was split into training and test sets, with 80% of the data used for training and 20% reserved for testing.
-
-```python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-```
-
-The model parameters were initialized as follows:
-
-- number of estimators (trees): 100
-- maximum depth of the tree: 10
-
-These parameters were chosen to balance the accuracy and computational efficiency.
-
-The model was then trained on the data.
-
-```python
-rf = RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42)
-rf.fit(X_train, y_train.values.ravel())
-```
-
-## <ins>Results and Findings</ins>
-
-### Model Performance
-
-Our trained Random Forest model exhibited solid performance in predicting the regions in phase space. The performance was evaluated using the Mean Squared Error (MSE) for both the training and test data. The results were:
-
-- **Training MSE:** 0.0005671118252182426
-- **Test MSE:** 0.0005891680348386154
-
-The close values of MSE for both training and test datasets indicate that our model generalizes well to unseen data, without any significant signs of overfitting.
-
-### Feature Importances
-
-The Random Forest Regressor offers insights into the importance of features used for predictions. The feature importances from our model were:
-
-- **x:** 0.6807263601754133
-- **z:** 0.006080546460394571
-- **Q:** 0.19588435868521697
-- **PT:** 0.11730873467897507
-
-From the above, we can deduce:
-
-- **x** plays a dominant role in determining the regions in phase space with a significance of approximately 68.07%.
-- **Q** and **PT** also have considerable importances with around 19.59% and 11.73% respectively.
-- **z**, on the other hand, appears to have a minor role with an importance of just about 0.61%.
-
-Recall that, in the appropriate references frames, *x* represents the fraction of the proton's momentum carried by the struck quark, *z* denotes the ratio of the energy of the J/psi to the energy of the virtual photon, and *Q* stands for the momentum transfer's scale or the virtual photon's virtuality. The significant importance of *x* in our findings highlights the dominant role the struck quark's momentum fraction plays in determining the phase space regions. Collectively, understanding the significance and interplay of these parameters can provide a richer comprehension of QCD phenomena and the underlying mechanisms of hadronic interactions.
-
-## <ins>Conclusion</ins>
-
-### Reflecting on Objectives
-
-We embarked on this project with the aim of learning about the kinematic parameters of J/psi production cross sections using machine learning. Our model offered insights into the importance of these parameters in semi-inclusive deep inelastic scattering.
-
-### Key Takeaways
-
-- Our **Random Forest Regressor** model delivered commendable performance, demonstrating its potential in predicting complex particle interactions.
-  
-- The parameter *x*, representing the fraction of the proton's momentum carried by the struck quark, emerged as the dominant factor in our findings. This reaffirms its centrality in deep inelastic scattering events.
-
-- Other parameters, such as *Q* and *PT*, also displayed notable importance.
-
-- The minor role of *z* in our results, despite its significance in the theoretical framework, hints at the potential need for further investigations.
-
-### Future Directions
-
-There is always room for improvement and further exploration:
-
-1. **Model Enhancement:** Experimenting with other machine learning algorithms or deep learning models might yield even better results.
-   
-2. **Expanded Dataset:** Incorporating a broader range of data, perhaps with PDFs from different experiments, could enhance the model's robustness and generalization.
-
-3. **Feature Engineering:** Further research into creating new features or refining existing ones based on theoretical insights might lead to better predictive capabilities.
-
-In conclusion, this project underscores the use of machine learning in the realm of nuclear/particle physics. It not only aids in prediction but also works towards a deeper understanding of these complex phenomena.
+  </div>
+</div>

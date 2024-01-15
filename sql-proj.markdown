@@ -1,6 +1,6 @@
 ---
 layout: page
-title: SQL and Python basketball stats project
+title: SQL, Python, and Tableau basketball stats project
 permalink: /sql-project/
 ---
 
@@ -12,10 +12,10 @@ Select the buttons below to reveal information for the components of the project
 
 <div class="btn-group" role="group" aria-label="button group">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dataset" aria-expanded="false" aria-controls="dataset">
-    Dataset
+    Real-world dataset
   </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
-    Exploratory Data Analysis
+    Exploratory data analysis
   </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python-simulation" aria-expanded="false" aria-controls="python-simulation">
     Python simulation
