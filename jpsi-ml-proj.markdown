@@ -88,14 +88,14 @@ Understanding regions of phase space where cross sections are significant has wi
 
 <p>Once those packages are installed, generating <code>.csv</code> files of PDF data is incredibly straightforward. The code below generates the gluon PDF from ManeParse and the up and down quark PDFs from WW-SIDIS.</p>
 
-<pre>
+<pre><code class="wolfram">
 gPDF=Flatten[Table[{x,Q,pdfFunction[5,0,x,Q]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 uPDF=Flatten[Table[{x,Q,f1u[x,Q^2]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 dPDF=Flatten[Table[{x,Q,f1d[x,Q^2]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 Export[NotebookDirectory[]<>"pdf_data/gPDF.csv",gPDF]
 Export[NotebookDirectory[]<>"pdf_data/uPDF.csv",uPDF]
 Export[NotebookDirectory[]<>"pdf_data/dPDF.csv",dPDF]
-</pre>
+</code></pre>
 
 <p>Each PDF is evaluated for 200<sup>2</sup> = 40,000 points. The <code>.csv</code> files can be imported as a pandas DataFrame, and we can use <code>scipy</code> to create an interpolator for other values of <em>x</em> and <em>Q</em>.</p>
 
