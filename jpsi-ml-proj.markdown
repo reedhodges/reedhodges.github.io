@@ -163,7 +163,7 @@ class differential_cross_section:
             return const*pdf*3*D1(z,PT,M)
 </code></pre>
 
-<p>The function <pre>D1</pre> is called a fragmentation function, and it describes the likelihood that a particular parton will fragment to form a J/ψ.  There are 18 such fragmentation functions, considering different polarizations for the partons and the J/ψ, and 17 of them were written down explicitly for the first time by my collaborators and I in our paper.</p>  
+<p>The function <code>D1</code> is called a fragmentation function, and it describes the likelihood that a particular parton will fragment to form a J/ψ.  There are 18 such fragmentation functions, considering different polarizations for the partons and the J/ψ, and 17 of them were written down explicitly for the first time by my collaborators and I in our paper.</p>  
 
 <p>Using similar functions, we can then create a DataFrame with all eight different production cross sections as a function of the four kinematic variables.</p>
 
