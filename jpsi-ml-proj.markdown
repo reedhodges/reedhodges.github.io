@@ -37,37 +37,41 @@ The repository for this project can be found [here](https://github.com/reedhodge
   <div class="card card-body">
 
 The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
-<br>
+<br> <br>
 One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.
-<br>
-Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in *parton distribution functions*, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
+<br> <br>
+Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <i>parton distribution functions</i>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
 
-<h1>Project Objectives</h1>
-
-<h2>Overview</h2>
+<h2>Project Objectives</h2>
 
 In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to learn more about the kinematic parameters for J/psi production cross sections.
 
-<h2>Specific goals</h2>
+<h3>Specific goals</h3>
 
-1. **Data Collection and Preprocessing:** Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.
-2. **Feature Identification:** Pinpoint the most salient features that have a potential impact on the magnitude of the cross sections.
-3. **Predictive Modeling:** Identify a machine learning model capable of accurately predicting regions of phase space where the cross sections are large.
-4. **Model Validation:** Ensure the model is both accurate and robust through rigorous testing and validation.
+<ul>
+<li><b>Data Collection and Preprocessing</b>: Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.</li>
+<li><b>Feature Identification</b>: Pinpoint the most salient features that have a potential impact on the magnitude of the cross sections.</li>
+<li><b>Predictive Modeling</b>: Identify a machine learning model capable of accurately predicting regions of phase space where the cross sections are large.</li>
+<li><b>Model Validation</b>: Ensure the model is both accurate and robust through rigorous testing and validation.</li>
+</ul>
 
-<h2>Challenges</h2>
+<h3>Challenges</h3>
 
-- **Data Complexity:** Phase space data is inherently multi-dimensional and can be challenging to process and understand.
-- **High Variability:** Due to the quantum nature of particle interactions and experimental error, there is variability and uncertainty inherent in the data.
-- **Computational Demands:** The high granularity of the data requires efficient computational methods to process and analyze.
+<ul>
+<li><b>Data Complexity</b>: Phase space data is inherently multi-dimensional and can be challenging to process and understand.</li>
+<li><b>High Variability</b>: Due to the quantum nature of particle interactions and experimental error, there is variability and uncertainty inherent in the data.</li>
+<li><b>Computational Demands</b>: The high granularity of the data requires efficient computational methods to process and analyze.</li>
+</ul>
 
-<h2>Significance</h2>
+<h3>Significance</h3>
 
 Understanding regions of phase space where cross sections are significant has wide-ranging implications:
 
-- **Particle Collider Experiments:** Helps in predicting outcomes and planning experiments in particle colliders.
-- **Testing Theory:** Assists researchers in validating or refuting theoretical models.
-- **Advancing Physics:** Understanding particle interactions can lead to new discoveries.
+<ul>
+<li><b>Particle Collider Experiments</b>: Helps in predicting outcomes and planning experiments in particle colliders.</li>
+<li><b>Testing Theory</b>: Assists researchers in validating or refuting theoretical models.</li>
+<li><b>Advancing Physics</b>: Understanding particle interactions can lead to new discoveries.</li>
+</ul>
 
   </div>
 </div>
