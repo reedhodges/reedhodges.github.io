@@ -37,31 +37,31 @@ The repository for this project can be found [here](https://github.com/reedhodge
   <div class="card card-body">
 
 The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
-
+<br>
 One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.
-
+<br>
 Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in *parton distribution functions*, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
 
-## <ins>Project Objectives</ins>
+<h1>Project Objectives</h1>
 
-### Overview
+<h2>Overview</h2>
 
 In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to learn more about the kinematic parameters for J/psi production cross sections.
 
-### Specific Goals
+<h2>Specific goals</h2>
 
 1. **Data Collection and Preprocessing:** Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.
 2. **Feature Identification:** Pinpoint the most salient features that have a potential impact on the magnitude of the cross sections.
 3. **Predictive Modeling:** Identify a machine learning model capable of accurately predicting regions of phase space where the cross sections are large.
 4. **Model Validation:** Ensure the model is both accurate and robust through rigorous testing and validation.
 
-### Challenges
+<h2>Challenges</h2>
 
 - **Data Complexity:** Phase space data is inherently multi-dimensional and can be challenging to process and understand.
 - **High Variability:** Due to the quantum nature of particle interactions and experimental error, there is variability and uncertainty inherent in the data.
 - **Computational Demands:** The high granularity of the data requires efficient computational methods to process and analyze.
 
-### Significance
+<h2>Significance</h2>
 
 Understanding regions of phase space where cross sections are significant has wide-ranging implications:
 
