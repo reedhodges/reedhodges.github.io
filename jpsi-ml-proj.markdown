@@ -36,17 +36,17 @@ The repository for this project can be found [here](https://github.com/reedhodge
 <div class="collapse" id="introduction">
   <div class="card card-body">
 
-The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. 
-<br> <br>
-One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.
-<br> <br>
-Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <i>parton distribution functions</i>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.
+<p>The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. </p>
 
-<h2>Project Objectives</h2>
+<p>One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.</p>
+
+<p>Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <em>parton distribution functions</em>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.</p>
+
+<h3>Project Objectives</h3>
 
 In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to learn more about the kinematic parameters for J/psi production cross sections.
 
-<h3>Specific goals</h3>
+<u>Specific goals</u>
 
 <ul>
 <li><b>Data Collection and Preprocessing</b>: Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.</li>
@@ -55,7 +55,7 @@ In the fascinating realm of particle physics, the concept of phase space and its
 <li><b>Model Validation</b>: Ensure the model is both accurate and robust through rigorous testing and validation.</li>
 </ul>
 
-<h3>Challenges</h3>
+<u>Challenges</u>
 
 <ul>
 <li><b>Data Complexity</b>: Phase space data is inherently multi-dimensional and can be challenging to process and understand.</li>
@@ -63,7 +63,7 @@ In the fascinating realm of particle physics, the concept of phase space and its
 <li><b>Computational Demands</b>: The high granularity of the data requires efficient computational methods to process and analyze.</li>
 </ul>
 
-<h3>Significance</h3>
+<u>Significance</u>
 
 Understanding regions of phase space where cross sections are significant has wide-ranging implications:
 
@@ -79,38 +79,37 @@ Understanding regions of phase space where cross sections are significant has wi
 <div class="collapse" id="dataset">
   <div class="card card-body">
 
-## <ins>Data Acquisition and Cleaning</ins>
 
-# PDFs
+<h3>PDFs</h3>
 
-The most fundamental type of data we will be using are derived from *parton distribution functions*, or PDFs.  These are probability distributions that are a function of the fraction *x* of the proton's momentum carried by the parton, and a particular energy scale in the problem *Q*.  In practice, the PDFs are obtained by fitting to experimental data, which is done by different collaborations of scientists.  The collaborations then publish their fits for use by other researchers.  
+<p>The most fundamental type of data we will be using are derived from <em>parton distribution functions</em>, or PDFs. These are probability distributions that are a function of the fraction <em>x</em> of the proton's momentum carried by the parton, and a particular energy scale in the problem <em>Q</em>. In practice, the PDFs are obtained by fitting to experimental data, which is done by different collaborations of scientists. The collaborations then publish their fits for use by other researchers.</p>
 
-The standard tool for evaluating PDFs is [LHAPDF](https://lhapdf.hepforge.org/), which has a library of the fits done by various collaborations.  [ManeParse](https://ncteq.hepforge.org/mma/index.html) and [WW-SIDIS](https://github.com/prokudin/WW-SIDIS) provide Mathematica interfaces to evaluate the PDFs, which was of particular utility to me and my collaborators in writing our research papers, as much of our calculations and plotting were done in Mathematica.
+<p>The standard tool for evaluating PDFs is <a href="https://lhapdf.hepforge.org/">LHAPDF</a>, which has a library of the fits done by various collaborations. <a href="https://ncteq.hepforge.org/mma/index.html">ManeParse</a> and <a href="https://github.com/prokudin/WW-SIDIS">WW-SIDIS</a> provide Mathematica interfaces to evaluate the PDFs, which was of particular utility to me and my collaborators in writing our research papers, as much of our calculations and plotting were done in Mathematica.</p>
 
-Once those packages are installed, generating `.csv` files of PDF data is incredibly straightforward.  The code below generates the gluon PDF from ManeParse and the up and down quark PDFs from WW-SIDIS.
+<p>Once those packages are installed, generating <code>.csv</code> files of PDF data is incredibly straightforward. The code below generates the gluon PDF from ManeParse and the up and down quark PDFs from WW-SIDIS.</p>
 
-```
+<pre>
 gPDF=Flatten[Table[{x,Q,pdfFunction[5,0,x,Q]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 uPDF=Flatten[Table[{x,Q,f1u[x,Q^2]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 dPDF=Flatten[Table[{x,Q,f1d[x,Q^2]},{x,0.01,1.0,(1.0-0.01)/200},{Q,5,50,(50.0-5.0)/200}],1]
 Export[NotebookDirectory[]<>"pdf_data/gPDF.csv",gPDF]
 Export[NotebookDirectory[]<>"pdf_data/uPDF.csv",uPDF]
 Export[NotebookDirectory[]<>"pdf_data/dPDF.csv",dPDF]
-```
+</pre>
 
-Each PDF is evaluated for 200<sup>2</sup> = 40,000 points.  The `.csv` files can be imported as a pandas DataFrame, and we can use `scipy` to create an interpolator for other values of *x* and *Q*.
+<p>Each PDF is evaluated for 200<sup>2</sup> = 40,000 points. The <code>.csv</code> files can be imported as a pandas DataFrame, and we can use <code>scipy</code> to create an interpolator for other values of <em>x</em> and <em>Q</em>.</p>
 
-```python
-def create_interpolator(df):
+<pre><code class="python">
+function create_interpolator(df):
     x_values = sorted(df['x'].unique())
     Q_values = sorted(df['Q'].unique())
     f_values = df.set_index(['x', 'Q']).reindex(index=pd.MultiIndex.from_product([x_values, Q_values])).unstack().values
     return RegularGridInterpolator((x_values, Q_values), f_values, method='linear')
-```
+</code></pre>
 
-Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as a funcion of _x_.  There are three types of partons plotted here: up quark, down quark, and gluon.
+<p>Here is a log plot that shows the momentum fraction times the PDFs, <em>x*f(x)</em>, as a function of <em>x</em>. There are three types of partons plotted here: up quark, down quark, and gluon.</p>
 
-![PDFs Plot](https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png)
+<img src="https://raw.githubusercontent.com/reedhodges/portfolio_Jpsi/main/figures/pdfs-fig.png" alt="PDFs Plot">
 
   </div>
 </div>
@@ -118,16 +117,16 @@ Here is a log plot that shows the momentum fraction times the PDFs, _x*f(x)_, as
 <div class="collapse" id="EDA">
   <div class="card card-body">
 
-## <ins>Exploratory Data Analysis</ins>
+<p>The initial exploratory data analysis for this project was done in a <a href="https://arxiv.org/pdf/2310.13737">paper</a> published by me and my collaborators. Look at Figure 4 from that paper:</p>
 
-The initial exploratory data analysis for this project was done in a [paper](https://arxiv.org/pdf/2310.13737) published by me and my collaborators.  Look at Figure 4 from that paper:
+<img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/expl_data_analysis.png" alt="PDFs Plot">
 
-![PDFs Plot](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/expl_data_analysis.png)
+<p>Here, we are plotting the cross section (<code>&sigma;</code>) differential in the transverse momentum of the J/psi, as a function of that transverse momentum. Each plot is a bin where we integrated over a particular subset of the domain of <em>x</em>, <em>z</em>, and <em>Q</em>. The blue lines are where the J/psi is produced from a quark inside the proton, and the red and green lines are two different ways the J/psi can be produced from a gluon inside the proton. The purpose of making this plot was to identify bins in which one of these lines was dominant over the other. For example, in the third bin, the red and green lines are clearly dominant over the blue, while in the bottom row of plots the blue line is dominant. Some conclusions you can draw from this include:</p>
 
-Here, we are plotting the cross section (\[sigma]) differential in the transverse momentum of the J/psi, as a function of that transverse momentum.  Each plot is a bin where we integrated over a particular subset of the domain of *x*, *z*, and *Q*.  The blue lines are where the J/psi is produced from a quark inside the proton, and the red and green lines are two different ways the J/psi can be produced from a gluon inside the proton.  The purpose of making this plot was to identify bins in which one of these lines was dominant over the other.  For example, in the third bin the red and green lines are clearly dominant over the blue, while in the bottom row of plots the blue line is dominant.  Some conclusions you can draw from this include:
-
-- If you are interested in production via a gluon, look at larger values of *z*, but smaller values of *x* and *Q*
-- If you are interested in production via a quark, look at larger values of *x*
+<ul>
+  <li>If you are interested in production via a gluon, look at larger values of <em>z</em>, but smaller values of <em>x</em> and <em>Q</em></li>
+  <li>If you are interested in production via a quark, look at larger values of <em>x</em></li>
+</ul>
 
   </div>
 </div>
