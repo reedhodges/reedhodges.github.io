@@ -15,8 +15,8 @@ Github repository: [[1](https://github.com/reedhodges/bball_league)]
 
 <br />
 
-### 2. [J/psi production](jpsi-ml-proj.markdown)
-A **work-in-progress** portfolio project attempting to learn about the phase space of various J/psi production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
+### 2. [J/ψ production ML project](jpsi-ml-proj.markdown)
+A **work-in-progress** portfolio project attempting to learn about the phase space of various J/ψ production mechanisms, demonstrating skills in the Python libraries numpy, pandas, and scikit-learn.
 
 Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
 

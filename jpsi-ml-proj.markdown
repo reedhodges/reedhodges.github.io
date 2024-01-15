@@ -1,6 +1,6 @@
 ---
 layout: page
-title: J/psi production project
+title: J/ψ production ML project
 permalink: /Jpsi-production-project/
 ---
 
@@ -36,42 +36,46 @@ The repository for this project can be found [here](https://github.com/reedhodge
 <div class="collapse" id="introduction">
   <div class="card card-body">
 
-<p>The J/psi meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. </p>
+<p>The J/ψ meson is a particle consisting of a charm quark and charm antiquark. It was discovered in 1974 by two research groups, one at the Stanford Linear Accelerator Center and the other at Brookhaven National Laboratory. </p>
 
-<p>One of the processes in which a J/psi can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/psi.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.</p>
+<p>One of the processes in which a J/ψ can be produced is called semi-inclusive deep inelastic scattering. Here, an electron and a proton are collided at high speeds. A proton is not a fundamental particle - it has smaller constituent pieces inside it, called partons, which can be quarks or gluons. So when an electron collides with a proton, the proton can break apart and the partons can eventually produce even more types of particles, some of which might be the charm and anticharm quarks required to form a J/ψ.  There are different ways this can happen, for example the process is different depending on whether the initial parton was a quark or a gluon.  My collaborators and I wrote a paper comparing these two possibilities.</p>
 
 <p>Why might we be interested in this?  Well, clearly the problem depends on understanding the physics behind the partons inside the proton.  This information is encoded in <em>parton distribution functions</em>, or PDFs, which are like probability distributions that describe the likelihood to find a parton of a particular type and a particular momentum inside the proton. These PDFs are from experimental results. However, there are some types of PDFs we don't know much about yet.  As a theoretical physicist, something useful to do is to make a prediction for a future experiment, so that when the PDFs are measured, we can compare the results and test our understanding of the underlying physics.</p>
 
 <h3>Project Objectives</h3>
 
-In the fascinating realm of particle physics, the concept of phase space and its respective cross sections are crucial for understanding particle interactions. The objective of this project is to harness the power of data science and machine learning to learn more about the kinematic parameters for J/psi production cross sections.
+<p>This portfolio project focuses on the application of machine learning techniques to a specialized domain of particle physics, specifically analyzing J/ψ production cross sections. The dataset comprises several measurements of J/ψ production cross sections as a function of four kinematic variables. The primary goal is to leverage Python's machine learning ecosystem to extract meaningful insights and predictions from this complex dataset.</p>
 
-<u>Specific goals</u>
+<h4>Specific Objectives</h4>
 
+<h5>1. Data Visualization and Analysis</h5>
 <ul>
-<li><b>Data Collection and Preprocessing</b>: Acquire a comprehensive dataset that encapsulates key variables and parameters that influence the cross sections.</li>
-<li><b>Feature Identification</b>: Pinpoint the most salient features that have a potential impact on the magnitude of the cross sections.</li>
-<li><b>Predictive Modeling</b>: Identify a machine learning model capable of accurately predicting regions of phase space where the cross sections are large.</li>
-<li><b>Model Validation</b>: Ensure the model is both accurate and robust through rigorous testing and validation.</li>
+    <li><strong>Goal:</strong> Conduct a comprehensive exploratory data analysis to uncover patterns, correlations, and distributions within the data.</li>
+    <li><strong>Methodology:</strong> Employ Python's visualization libraries to create insightful visualizations that inform subsequent modeling choices and provide an intuitive understanding of the dataset's characteristics.</li>
 </ul>
 
-<u>Challenges</u>
-
+<h5>2. Predictive Modeling</h5>
 <ul>
-<li><b>Data Complexity</b>: Phase space data is inherently multi-dimensional and can be challenging to process and understand.</li>
-<li><b>High Variability</b>: Due to the quantum nature of particle interactions and experimental error, there is variability and uncertainty inherent in the data.</li>
-<li><b>Computational Demands</b>: The high granularity of the data requires efficient computational methods to process and analyze.</li>
+    <li><strong>Goal:</strong> Develop and train machine learning models to accurately predict the J/ψ production cross section based on the provided kinematic variables.</li>
+    <li><strong>Methodology:</strong> Experiment with various regression models to determine the most effective approach for this dataset.</li>
 </ul>
 
-<u>Significance</u>
-
-Understanding regions of phase space where cross sections are significant has wide-ranging implications:
-
+<h5>3. Feature Importance Analysis</h5>
 <ul>
-<li><b>Particle Collider Experiments</b>: Helps in predicting outcomes and planning experiments in particle colliders.</li>
-<li><b>Testing Theory</b>: Assists researchers in validating or refuting theoretical models.</li>
-<li><b>Advancing Physics</b>: Understanding particle interactions can lead to new discoveries.</li>
+    <li><strong>Goal:</strong> Identify and quantify the influence of each kinematic variable on the J/ψ production cross section.</li>
+    <li><strong>Methodology:</strong> Utilize feature importance metrics from machine learning models and techniques like SHAP values to understand the contribution of each variable to the model's predictions.</li>
 </ul>
+
+<h5>4. Anomaly Detection</h5>
+<ul>
+    <li><strong>Goal:</strong> Detect and analyze anomalies in the J/ψ production cross section data to ensure the integrity and quality of the machine learning models.</li>
+    <li><strong>Methodology:</strong> Implement unsupervised learning algorithms to identify outliers and unusual patterns in the dataset, aiding in data cleaning and preprocessing.</li>
+</ul>
+
+<h4>Expected Outcomes</h4>
+<p>By accomplishing these objectives, this project aims to demonstrate a proficient application of machine learning in a physics context, showcasing skills in data processing, model development, and analysis. The project will also emphasize the importance of exploratory data analysis and feature understanding in building effective machine learning models. The final outcome will not only include a set of trained models but also a rich set of visualizations and insights into the J/ψ production proces</p>
+
+<p>Through predictive modeling, we anticipate establishing a reliable and accurate relationship between the kinematic variables and the J/ψ production cross section. The feature importance analysis will provide a deeper understanding of the driving factors in J/ψ production, which could have broader implications in theoretical and experimental physics. The exploratory data analysis will serve as a cornerstone for all subsequent modeling, ensuring a robust and well-informed approach. Finally, the anomaly detection component will enhance the dataset's quality, ensuring the reliability of our models and findings.</p>
 
   </div>
 </div>
@@ -121,7 +125,7 @@ function create_interpolator(df):
 
 <img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/expl_data_analysis.png" alt="PDFs Plot">
 
-<p>Here, we are plotting the cross section (<code>&sigma;</code>) differential in the transverse momentum of the J/psi, as a function of that transverse momentum. Each plot is a bin where we integrated over a particular subset of the domain of <em>x</em>, <em>z</em>, and <em>Q</em>. The blue lines are where the J/psi is produced from a quark inside the proton, and the red and green lines are two different ways the J/psi can be produced from a gluon inside the proton. The purpose of making this plot was to identify bins in which one of these lines was dominant over the other. For example, in the third bin, the red and green lines are clearly dominant over the blue, while in the bottom row of plots the blue line is dominant. Some conclusions you can draw from this include:</p>
+<p>Here, we are plotting the cross section (<code>&sigma;</code>) differential in the transverse momentum of the J/ψ, as a function of that transverse momentum. Each plot is a bin where we integrated over a particular subset of the domain of <em>x</em>, <em>z</em>, and <em>Q</em>. The blue lines are where the J/ψ is produced from a quark inside the proton, and the red and green lines are two different ways the J/ψ can be produced from a gluon inside the proton. The purpose of making this plot was to identify bins in which one of these lines was dominant over the other. For example, in the third bin, the red and green lines are clearly dominant over the blue, while in the bottom row of plots the blue line is dominant. Some conclusions you can draw from this include:</p>
 
 <ul>
   <li>If you are interested in production via a gluon, look at larger values of <em>z</em>, but smaller values of <em>x</em> and <em>Q</em></li>
