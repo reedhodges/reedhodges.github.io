@@ -88,6 +88,7 @@ The repository for this project can be found [here](https://github.com/reedhodge
 <div class="collapse" id="dataset">
   <div class="card card-body">
 
+<h2>Dataset</h2>
 
 <h3>PDFs</h3>
 

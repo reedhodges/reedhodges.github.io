@@ -150,7 +150,7 @@ Select the buttons below to reveal information for the components of the project
     <p>I create a class for each of the three basic positions, using the means and standard deviations (if applicable) for the distributions we investigated earlier. For example, the <code>guard</code> class looks like:</p>
 
     <pre><code class="python">
-    class guard(player):
+    class Guard(Player):
         def __init__(self, seed=None):
             super().__init__({
                 # stat: (mean, std)
@@ -169,7 +169,7 @@ Select the buttons below to reveal information for the components of the project
     <p>I then have a <code>player</code> class that, when called, generates a player of a particular position and gives them fixed expected values for their stats, by picking a number either according to a normal or Poisson distribution. This makes each player have some level of uniqueness to them.</p>
 
     <pre><code class="python">
-    class player:
+    class Player:
         '''
         Generates a player of a given position and sets their expected stats.
         '''
@@ -192,7 +192,7 @@ Select the buttons below to reveal information for the components of the project
     <p>The <code>team</code> class initializes a team with a particular name and generates five players to be on the roster.</p>
 
     <pre><code class="python">
-    class team:
+    class Team:
         ''' 
         Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
         '''
@@ -200,11 +200,11 @@ Select the buttons below to reveal information for the components of the project
             self.name = name
             self.seed = seed
             # roster
-            self.pg = guard(seed=self.seed)
-            self.sg = guard(seed=self.seed + 1)
-            self.sf = forward(seed=self.seed)
-            self.pf = forward(seed=self.seed + 1)
-            self.c = center(seed=self.seed)
+            self.pg = Guard(seed=self.seed)
+            self.sg = Guard(seed=self.seed + 1)
+            self.sf = Forward(seed=self.seed)
+            self.pf = Forward(seed=self.seed + 1)
+            self.c = Center(seed=self.seed)
 
             # dictionaries with position objects
             self.positions_dict = {
@@ -228,57 +228,57 @@ Select the buttons below to reveal information for the components of the project
             return {key: 0.2 for key in dictionary.keys()}
         return {key: value / total for key, value in dictionary.items()}
 
-    class team:
-        ''' 
-        Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
-        '''
-        def __init__(self, name, seed=None):
-            self.name = name
-            self.seed = seed
-            # roster
-            self.pg = guard(seed=self.seed)
-            self.sg = guard(seed=self.seed + 1)
-            self.sf = forward(seed=self.seed)
-            self.pf = forward(seed=self.seed + 1)
-            self.c = center(seed=self.seed)
+    class Team:
+    ''' 
+    Generates a team of 5 players.  Also sets the expected distribution of stats and the pace.
+    '''
+    def __init__(self, name, seed=None):
+        self.name = name
+        self.seed = seed
+        # roster
+        self.pg = Guard(seed=self.seed)
+        self.sg = Guard(seed=self.seed + 1)
+        self.sf = Forward(seed=self.seed)
+        self.pf = Forward(seed=self.seed + 1)
+        self.c = Center(seed=self.seed)
 
-            # dictionaries with position objects
-            self.positions_dict = {
-                'PG': self.pg,
-                'SG': self.sg,
-                'SF': self.sf,
-                'PF': self.pf,
-                'C': self.c
-            }
+        # dictionaries with position objects
+        self.positions_dict = {
+            'PG': self.pg,
+            'SG': self.sg,
+            'SF': self.sf,
+            'PF': self.pf,
+            'C': self.c
+        }
 
-            def roster_weight(stat_to_consider):
-                # returns a dictionary of weights for each position based on a given stat.
-                weights_dict = {}
-                if stat_to_consider == 'fg':
-                    for position, player in self.positions_dict.items():
-                        # choose the larger of 2P% and 3P%
-                        weights_dict[position] = max(player.expected_stats['fg2'], player.expected_stats['fg3'])
-                    return normalize_dict(weights_dict)
-                for position, player in self.positions_dict.items():
-                    weights_dict[position] = player.expected_stats[stat_to_consider]
-                return normalize_dict(weights_dict)
+        # expected distributions of stats by position
+        self.shot_distribution_pos = self.roster_weight('fg')
+        self.dreb_distribution_pos = self.roster_weight('dreb')
+        self.oreb_distribution_pos = self.roster_weight('oreb')
+        self.ast_distribution_pos = self.roster_weight('ast')
+        self.stl_distribution_pos = self.roster_weight('stl')
+        self.blk_distribution_pos = self.roster_weight('blk')
+        self.to_distribution_pos = self.roster_weight('to')
+        # pace of team: average number of possessions per game
+        self.pace = np.random.normal(75, 5, 1)[0]
+        # expected rebounds a team gets per game
+        self.expected_dreb = sum(player.expected_stats['dreb'] for player in self.positions_dict.values())
+        self.expected_oreb = sum(player.expected_stats['oreb'] for player in self.positions_dict.values())
 
-            # expected distributions of stats by position
-            self.shot_distribution_pos = roster_weight('fg')
-            self.dreb_distribution_pos = roster_weight('dreb')
-            self.oreb_distribution_pos = roster_weight('oreb')
-            self.ast_distribution_pos = roster_weight('ast')
-            self.stl_distribution_pos = roster_weight('stl')
-            self.blk_distribution_pos = roster_weight('blk')
-            self.to_distribution_pos = roster_weight('to')
-            # pace of team: average number of possessions per game
-            self.pace = np.random.normal(75, 5, 1)[0]
-            # expected rebounds a team gets per game
-            self.expected_dreb = sum(player.expected_stats['dreb'] for player in self.positions_dict.values())
-            self.expected_oreb = sum(player.expected_stats['oreb'] for player in self.positions_dict.values())
+    def roster_weight(self, stat_to_consider):
+        # returns a dictionary of weights for each position based on a given stat.
+        weights_dict = {}
+        if stat_to_consider == 'fg':
+            for position, player in self.positions_dict.items():
+                # choose the larger of 2P% and 3P%
+                weights_dict[position] = max(player.expected_stats['fg2'], player.expected_stats['fg3'])
+            return normalize_dict(weights_dict)
+        for position, player in self.positions_dict.items():
+            weights_dict[position] = player.expected_stats[stat_to_consider]
+        return normalize_dict(weights_dict)
     </code></pre>
 
-    <p>The last two lines set a pace for the team, which will be used later so that each simulated game does not have the same number of possessions, and the total number of expected rebounds per game.</p>
+    <p>This also sets the pace for the team, which will be used later so that each simulated game does not have the same number of possessions, and the total number of expected rebounds per game.</p>
 
     <h3>Simulating a game</h3>
 
@@ -403,7 +403,7 @@ Select the buttons below to reveal information for the components of the project
     <p>Simulating a full game, then, simply requires us to simulate many possessions and keep track of the players' stats along the way.</p>
 
     <pre><code class="python">
-    class game:
+    class Game:
         '''
         Simulates a game by simulating a number of possessions between two teams.
         '''
@@ -453,14 +453,14 @@ Select the buttons below to reveal information for the components of the project
     <p>Simulating a season is also straightforward.  We enumerate all the matchups that will be played, initialize a DataFrame to store the stats for each game, and then simulate all the games.  We also keep track of the winners and losers of each game so that league standings can be recorded.</p>
 
     <pre><code class="python">
-    class season:
+    class Season:
     '''
     Simulates a season by simulating all games between all teams.  Each team plays every other team twice.
     '''
     def __init__(self, num_teams):
         self.num_teams = num_teams
         self.num_games = 2 * comb(self.num_teams, 2)
-        self.teams = [team(name=team_nicknames[i], seed=i) for i in range(self.num_teams)]
+        self.teams = [Team(name=team_nicknames[i], seed=i) for i in range(self.num_teams)]
         self.matchups = self.generate_matchups()
         self.df_game_stats = self.initialize_game_stats_df()
         self.team_records = {team_name: [0, 0, 0] for team_name in team_nicknames[:self.num_teams]}
@@ -493,7 +493,7 @@ Select the buttons below to reveal information for the components of the project
     def play_season(self):
         for game_id in range(self.num_games):
             team1, team2 = self.matchups[game_id]
-            team1_stats, team2_stats = game(team1, team2).play_game()
+            team1_stats, team2_stats = Game(team1, team2).play_game()
             self.add_game_stats(game_id, team1, team2, team1_stats)
             self.add_game_stats(game_id, team2, team1, team2_stats)
             self.update_team_records(team1, team2, team1_stats, team2_stats)
@@ -504,7 +504,7 @@ Select the buttons below to reveal information for the components of the project
     <p>For a league with 50 teams, we can then simply run:</p>
 
     <pre><code class="python">
-    s = season(50)
+    s = Season(50)
     s.play_season()
     </code></pre>
 
