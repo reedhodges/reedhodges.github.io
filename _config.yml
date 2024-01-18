@@ -37,7 +37,7 @@ header_pages:
   - resume.markdown
 
 minima:
-  skin: dark
+  skin: solarized-dark
   social_links:
     - { platform: github,          user_url: "https://github.com/reedhodges" }
     - { platform: linkedin,       user_url: "https://www.linkedin.com/in/reed-hodges-391b8810b/" }
