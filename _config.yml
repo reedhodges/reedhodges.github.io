@@ -28,9 +28,8 @@ twitter_username: reedmhodges
 github_username:  reedhodges
 
 # Build settings
-theme: minima
-minima:
-  skin: dark
+#theme: minima
+remote_theme: jekyll/minima
 plugins:
   - jekyll-feed
 
