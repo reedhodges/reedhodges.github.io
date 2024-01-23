@@ -18,14 +18,8 @@ The repository for this project can be found [here](https://github.com/reedhodge
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#EDA" aria-expanded="false" aria-controls="EDA">
     Dataset
   </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#predictive-modeling" aria-expanded="false" aria-controls="predictive-modeling">
-    Predictive modeling
-  </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#feature-importance" aria-expanded="false" aria-controls="feature-importance">
     Feature importance
-  </button>
-  <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#anomaly-detection" aria-expanded="false" aria-controls="anomaly-detection">
-    Anomaly detection
   </button>
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#conclusion" aria-expanded="false" aria-controls="conclusion">
     Conclusion
