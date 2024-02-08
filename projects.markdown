@@ -4,10 +4,6 @@ title: Projects
 permalink: /projects/
 ---
 
-Below I list four projects I have worked on in my career since the start of undergrad.  #1 is a toy project designed as an avenue through which to broaden my skills in Python and scikit-learn.  The rest are my broadly-defined three academic research projects, one from undergrad and two from grad school.  Each of these three projects resulted in two papers for a grand total of six papers, four of which are currently published in peer-reviewed journals, with the other two currently undergoing the review process. 
-
-Projects 1, 2, and 3 have dedicated pages on this website, showcasing skills and discussing their compuational aspects.  Click on their titles to learn more.
-
 ### 1. [SQL, Python, and Tableau basketball stats project](sql-proj.markdown)
 A portfolio project where I generate statistics for a fake basketball league in Python, and run SQL queries against the resulting data.  The data is visualized in a Tableau story.
 
@@ -22,7 +18,7 @@ Github repository: [[1](https://github.com/reedhodges/portfolio_Jpsi)]
 
 <br />
 
-### 3. [Transverse momentum dependence in J/psi production](mathematica-proj.markdown)
+### 3. Transverse momentum dependence in J/psi production
 
 Collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen
 
