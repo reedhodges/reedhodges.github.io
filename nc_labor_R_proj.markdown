@@ -311,6 +311,7 @@ summary(anova_result)
 
 <div class="collapse" id="seasonal">
   <div class="card card-body">
+  <h2>Seasonal employment in a specific industry</h2>
 <p>Following our analysis of wage disparities by ownership type, we shift our focus to examining seasonal variations in employment levels within a given industry. Seasonal variation refers to fluctuations in employment that occur at regular intervals throughout the year, often influenced by climatic changes, holidays, and industry-specific cycles. Understanding these patterns is crucial for businesses, policymakers, and workers alike, as it aids in strategic planning, resource allocation, and workforce management.</p>
 
 <p>Let's look at private ownership for the industry Agriculture, Forestry, Fishing, and Hunting, since it's reasonable to assume outdoors-based jobs might have seasonal fluctuations. We can still perform the ANOVA test here, since we are still looking at variation across multiple groups.</p>
