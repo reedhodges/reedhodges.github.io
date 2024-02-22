@@ -94,7 +94,7 @@ It is simple to perform the ANOVA test in R:
 library(ggplot2)
 library(dplyr)
 
-data <- read.csv("/Users/reedhodges/Documents/GitHub/nc_labor_data/qcew_data/data_quarterly.csv")
+data <- read.csv("filepath/data_quarterly.csv")
 
 data$Ownership <- as.factor(data$Ownership)
 data$Average.Weekly.Wage <- as.numeric(data$Average.Weekly.Wage)
@@ -108,10 +108,10 @@ summary(anova_result)
 
 The results of the test are as follows.
 
-| Source    | Df   | Sum Sq     | Mean Sq  | F value | Pr(>F)     |
-|-----------|------|------------|----------|---------|------------|
-| Ownership | 3    | 6.073e+07  | 20244888 | 119.6   | <2e-16     |
-| Residuals | 7074 | 1.198e+09  | 169282   |         |            |
+| **Source**    | **Df**   | **Sum Sq**     | **Mean Sq**  | **F value** | **Pr(>F)**     |
+|---------------|----------|----------------|--------------|-------------|----------------|
+| Ownership     | 3        | 6.073e+07      | 20244888     | 119.6       | <2e-16 ***     |
+| Residuals     | 7074     | 1.198e+09      | 169282       |             |                |
 
 
 What do these values mean?
@@ -169,14 +169,14 @@ if (summary(anova_result)[[1]][["Pr(>F)"]][1] < 0.05) {
 
 It has the following output.
 
-| Comparison                                 | Difference | Lower Bound | Upper Bound | Adjusted P-value |
-|--------------------------------------------|------------|-------------|-------------|------------------|
-| Local Government - Federal Government      | -259.70534 | -297.43360  | -221.97707  | 0e+00            |
-| Private - Federal Government               | -87.20839  | -122.10058  | -52.31619   | 0e+00            |
-| State Government - Federal Government      | -174.65524 | -214.33931  | -134.97117  | 0e+00            |
-| Private - Local Government                 | 172.49695  | 139.42449   | 205.56941   | 0e+00            |
-| State Government - Local Government        | 85.05010   | 46.95617    | 123.14403   | 1e-07            |
-| State Government - Private                 | -87.44685  | -122.73412  | -52.15958   | 0e+00            |
+| **Comparison**                                 | **Difference** | **Lower Bound** | **Upper Bound** | **Adjusted P-value** |
+|------------------------------------------------|----------------|-----------------|-----------------|----------------------|
+| Local Government - Federal Government          | -259.70534     | -297.43360      | -221.97707      | 0e+00                |
+| Private - Federal Government                   | -87.20839      | -122.10058      | -52.31619       | 0e+00                |
+| State Government - Federal Government          | -174.65524     | -214.33931      | -134.97117      | 0e+00                |
+| Private - Local Government                     | 172.49695      | 139.42449       | 205.56941       | 0e+00                |
+| State Government - Local Government            | 85.05010       | 46.95617        | 123.14403       | 1e-07                |
+| State Government - Private                     | -87.44685      | -122.73412      | -52.15958       | 0e+00                |
 
 Here are the key takeaways:
 
@@ -188,7 +188,7 @@ The results indicate significant wage disparities between various types of owner
 
 ### Plot
 
-We can generate a box-and-whisker plot for the wages across the ownership types.
+We can generate a box-and-whisker plot for the wages across the ownership types.  
 
 ```R
 ggplot(data_clean, aes(x = Ownership, y = Average.Weekly.Wage, fill = Ownership)) +
@@ -200,6 +200,186 @@ ggplot(data_clean, aes(x = Ownership, y = Average.Weekly.Wage, fill = Ownership)
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+The components to the plot are as follows.
+
+- **Box**: The central box of the plot represents the interquartile range (IQR), which is the range between the first quartile (Q1, 25th percentile) and the third quartile (Q3, 75th percentile). This box contains the middle 50% of the data, providing a visual representation of the data's central tendency and spread.
+
+- **Median (Line in the Box)**: A line across the box indicates the median (the second quartile, Q2) of the dataset. The median represents the midpoint of the data, dividing it into two halves.
+
+- **Whiskers**: The lines extending from the top and bottom of the box, known as whiskers, show the range of the data outside the middle 50%. The whiskers typically extend to the smallest and largest values within 1.5 times the IQR from the first and third quartiles, respectively. Data points beyond the whiskers are considered outliers.
+
+- **Outliers (Dots)**: Outliers are data points that lie beyond the whiskers. They are represented as dots or small circles. Outliers indicate values that are unusually high or low compared to the rest of the dataset and may warrant further investigation.
+
 ![ownership-plot](images/R-weekly-wages-ownership.png)
 
-The dots indicate outliers.
+
+## Seasonal employment variation in a given industry
+
+Following our analysis of wage disparities by ownership type, we shift our focus to examining seasonal variations in employment levels within a given industry. Seasonal variation refers to fluctuations in employment that occur at regular intervals throughout the year, often influenced by climatic changes, holidays, and industry-specific cycles. Understanding these patterns is crucial for businesses, policymakers, and workers alike, as it aids in strategic planning, resource allocation, and workforce management.
+
+Let's look at private ownership for the industry Agriculture, Forestry, Fishing, and Hunting, since it's reasonable to assume outdoors-based jobs might have seasonal fluctuations.  We can still perform the ANOVA test here, since we are still looking at variation across multiple groups.
+
+- **Null Hypothesis (H0)**: There is no significant difference in employment levels across the quarters within the selected industry. This hypothesis suggests that any observed changes in employment figures throughout the year are due to chance rather than a systematic seasonal influence.
+
+- **Alternative Hypothesis (H1)**: There is a significant difference in employment levels across the quarters within the selected industry. This posits that seasonal factors systematically affect employment figures, leading to observable and statistically significant fluctuations across different quarters of the year.
+
+
+```R
+library(ggplot2)
+library(dplyr)
+
+data <- read.csv("filepath/data_quarterly.csv")
+
+# NAICS Code 11 (Agriculture, Forestry, Fishing, and Hunting)
+industry_data <- filter(data, NAICS.Code == 11, Ownership == "Private")
+
+industry_data$Quarter <- as.factor(industry_data$Quarter)
+
+# ANOVA to test for differences in average employment across quarters
+anova_result <- aov(Average.Employment ~ Quarter, data = industry_data)
+summary(anova_result)
+
+# If significant, perform a post-hoc test to find out which quarters are different
+if (summary(anova_result)[[1]][["Pr(>F)"]][1] < 0.05) {
+  posthoc_result <- TukeyHSD(anova_result)
+  print(posthoc_result)
+}
+```
+
+ANOVA test results:
+
+| **Source**  | **Df** | **Sum Sq**  | **Mean Sq** | **F value** | **Pr(>F)**  |
+|-------------|--------|-------------|-------------|-------------|-------------|
+| Quarter     | 3      | 7.681e+08   | 256021334   | 31.03       | 3.84e-15 ***|
+| Residuals   | 128    | 1.056e+09   | 8251283     |             |             |
+
+Tukey's HSD test results:
+
+| **Comparison** | **Difference** | **Lower Bound** | **Upper Bound** | **Adjusted P-value** |
+|----------------|----------------|-----------------|-----------------|----------------------|
+| 2-1            | 4386.5455      | 2545.7308       | 6227.360        | 0.0000000            |
+| 3-1            | 6717.2424      | 4876.4278       | 8558.057        | 0.0000000            |
+| 4-1            | 3588.2727      | 1747.4581       | 5429.087        | 0.0000079            |
+| 3-2            | 2330.6970      | 489.8823        | 4171.512        | 0.0068771            |
+| 4-2            | -798.2727      | -2639.0874      | 1042.542        | 0.6724467            |
+| 4-3            | -3128.9697     | -4969.7843      | -1288.155       | 0.0001193            |
+
+The ANOVA test demonstrates a significant variation in employment levels across different quarters for the private sector of the industry in focus. With an F value of 31.03 and a p-value of 3.84e-15, the results strongly reject the null hypothesis, indicating that the employment levels significantly differ across quarters. This suggests a pronounced seasonal effect on employment within the industry.
+
+The Tukey HSD test results detail the pairwise comparisons between quarters, highlighting where significant differences in employment levels lie:
+
+- **Significant Increases in Employment**: Comparisons between the first quarter and the subsequent quarters (2, 3, and 4) all reveal significant increases, with the transition from the first to the third quarter showing the most substantial rise in employment levels.
+- **Moderate Changes**: The shift from the second to the third quarter also marks a statistically significant increase in employment, albeit less pronounced than the changes from the first quarter.
+- **Stability Between Quarters**: The comparison between the second and fourth quarters indicates no significant difference, suggesting a period of employment stability across these quarters.
+- **Decrease in Employment**: A significant decrease in employment is observed from the third to the fourth quarter, highlighting a downturn in seasonal employment as the year progresses.
+
+The conducted analysis underscores a significant seasonal influence on employment within the private sector of the selected industry, with clear patterns of employment fluctuations across the year. These findings are vital for stakeholders within the industry, providing a data-driven basis for anticipating employment needs and effectively planning for seasonal variations. The identified increases and decreases in employment across specific quarters necessitate strategic planning and resource management to accommodate the cyclical nature of the industry's labor demands. 
+
+The box-and-whisker plot lets us visualize this variation.  
+
+![seasonal-trends](images/R-seasonal-trends.png)
+
+The winter months seem to have lower median employment, but the third quarter shows the highest variation.
+
+## Employment in a given industry over time
+
+Not all statistical tests are appropriate for a given dataset.  Say we wanted to perform linear regression on the average employment in the Agriculture, Forestry, Fishing, and Hunting industry since 1990.  
+
+```R
+library(ggplot2)
+library(dplyr)
+
+data <- read.csv("/Users/reedhodges/Documents/GitHub/nc_labor_data/qcew_data/data_annual.csv")
+
+# NAICS Code 11 (Agriculture, Forestry, Fishing and Hunting)
+industry_data <- filter(data, NAICS.Code == 11)
+
+# linear regression model
+model <- lm(Average.Employment ~ Year, data = industry_data)
+
+summary(model)
+```
+
+Here is the output of the test.
+
+
+| **Residuals:**         |                |
+|------------------------|----------------|
+| Min                    | -6834.6        |
+| 1Q                     | -1435.6        |
+| Median                 | 412.3          |
+| 3Q                     | 1869.8         |
+| Max                    | 4582.1         |
+
+| **Coefficients:**      |                |
+|------------------------|----------------|
+| Intercept (Estimate)   | 57017.78       |
+| Intercept (Std. Error) | 99486.80       |
+| Intercept (t value)    | 0.573          |
+| Intercept (Pr(>|t|))   | 0.571          |
+| Year (Estimate)        | -14.24         |
+| Year (Std. Error)      | 49.59          |
+| Year (t value)         | -0.287         |
+| Year (Pr(>|t|))        | 0.776          |
+
+| **Residual standard error:** | 2713   |
+| **Degrees of freedom:**      | 31     |
+| **Multiple R-squared:**      | 0.002653 |
+| **Adjusted R-squared:**      | -0.02952 |
+| **F-statistic:**             | 0.08247  |
+| **p-value:**                 | 0.7759   |
+
+How do we interpret these results?
+
+**Residuals:**
+- The range of residuals from -6834.6 to 4582.1 indicates the variability in the data not captured by the model. The median near zero suggests that for many observations, the model's predictions are reasonably close to the actual values.
+
+**Coefficients:**
+- The **intercept** represents the predicted employment level at the start of the period (if year were zero, which is hypothetical). With an estimate of 57017.78 and a high standard error, the intercept's significance is questionable, as indicated by the p-value of 0.571.
+- The coefficient for **Year** suggests a slight decrease in employment levels over time (-14.24 units per year). However, the statistical insignificance of this coefficient (p-value of 0.776) suggests that time might not be a reliable predictor of employment levels in this industry.
+
+**Model Fit:**
+- The **Residual standard error** of 2713 on 31 degrees of freedom shows the average difference between the observed employment levels and those predicted by the model.
+- A **Multiple R-squared** value of 0.002653 indicates that the model explains only a tiny fraction of the variance in employment, highlighting its weak predictive power.
+- The **Adjusted R-squared** being negative further emphasizes the poor fit of the model.
+- The **F-statistic** and its corresponding p-value (0.7759) indicate that the model is not statistically significant, suggesting that the year does not have a significant effect on employment levels.
+
+
+The linear regression analysis reveals no statistically significant relationship between the year and employment levels for the specified industry based on the provided data. The model's inability to significantly explain variations in employment suggests that factors other than time may be influencing employment trends, or that the relationship between time and employment is not linear. This analysis underscores the complexity of employment dynamics and the potential need for exploring additional variables or employing different models to gain a more comprehensive understanding of employment trends over time.
+
+Plotting the results clearly shows the poor fit.
+
+```R
+ggplot(industry_data, aes(x = Year, y = Average.Employment)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "blue") +
+  labs(title = "Trend of Average Employment Over Years in Agriculture, Forestry, Fishing and Hunting",
+       x = "Year",
+       y = "Average Employment") +
+  theme_minimal()
+```
+
+![linear-regression](images/R-linear-regression.png)
+
+The gray band in the plot represents the confidence interval around the regression line. This confidence interval provides a range of values within which we can be 95% confident that the true regression line lies.
+
+In simpler terms, the gray band shows the uncertainty around the estimated relationship between the independent variable (i.e. year) and the dependent variable (i.e. employment level). The width of the band indicates the level of precision of the estimate, with a narrower band suggesting more precise estimates of the regression line at different values of the independent variable.
+
+The confidence interval accounts for the variability of the data points around the fitted regression line. If the band is wide, it suggests greater uncertainty about the slope of the regression line, meaning the predictive power or the reliability of the model's estimates at those points is lower. Conversely, a narrower band suggests that the estimates of the regression line are more precise, indicating a more reliable model for predicting the dependent variable based on the independent variable.
+
+## Conclusion
+
+This analysis of employment data within North Carolina has brought to light significant insights into the state's employment dynamics. Utilizing linear regression and ANOVA tests, coupled with the exploration provided by Tukey's Honest Significant Difference (HSD) test, has revealed patterns and disparities of relevance to understanding the employment landscape.
+
+### Key Findings
+
+1. **Wage Disparities by Ownership**: Significant disparities in average weekly wages across different ownership types were confirmed through ANOVA testing, with further elucidation from Tukey's HSD test pinpointing specific pairs of ownership types where these disparities are most pronounced. This underscores the influence of ownership type on wage levels.
+
+2. **Seasonal Employment Variations**: The ANOVA analysis focusing solely on private ownership revealed statistically significant seasonal variations in employment. This highlights the presence of substantial seasonal employment patterns for the Agriculture, Forestry, Fishing, and Hunting industry.
+
+3. **Trend Analysis Over Time**: The lack of statistically significant findings from the linear regression analysis on employment trends over time points to the need for more sophisticated models, or the inclusion of additional variables, to capture the multifaceted nature of employment changes over time.
+
+### Final Thoughts
+
+This analysis sheds light on North Carolina's employment landscape, revealing the intricate interplay of factors influencing employment. It highlights the invaluable role of statistical analysis in uncovering underlying trends and disparities, laying a foundation for informed policymaking and strategic initiatives. 
+
