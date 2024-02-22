@@ -12,7 +12,7 @@ In this portfolio project, we're going to look into employment trends in the sta
 - **Average employment**
 - **Average weekly wages**
 
-Through a series of statistical tests we'll explore the underlying trends and differences within the data. 
+Through a series of statistical tests we'll explore the underlying trends and differences within the data.  Proceed through the collapsible tabs below.  
 
 <div class="btn-group" role="group" aria-label="button group">
   <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#explore" aria-expanded="false" aria-controls="explore">
@@ -74,7 +74,7 @@ ggplot(combined_data, aes(x = Year, y = Percent_of_Max, color = Industry)) +
 
 <p>Here we have a function that takes the annual data and calculates the average employment for a given industry over the course of a year, and makes a column of data for the percentage of the maximum employment over the time period. We then plot the data for the two industries.</p>
 
-<img src="images/R-trend-over-time.png" alt="trend-over-time">
+<img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/images/R-trend-over-time.png" alt="trend-over-time">
 
 <p>You can clearly see the boom in information jobs over the course of the 1990s, while manufacturing jobs have fallen to about 50% of their 1990 levels.</p>
 
@@ -304,7 +304,7 @@ summary(anova_result)
   <li><strong>Outliers (Dots)</strong>: Outliers are data points that lie beyond the whiskers. They are represented as dots or small circles. Outliers indicate values that are unusually high or low compared to the rest of the dataset and may warrant further investigation.</li>
 </ul>
 
-<img src="images/R-weekly-wages-ownership.png" alt="ownership-plot">
+<img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/images/R-weekly-wages-ownership.png" alt="ownership-plot">
 
   </div>
 </div>
@@ -445,7 +445,7 @@ if (summary(anova_result)[[1]][["Pr(>F)"]][1] &lt; 0.05) {
 
 <p>The conducted analysis underscores a significant seasonal influence on employment within the private sector of the selected industry, with clear patterns of employment fluctuations across the year. These findings are vital for stakeholders within the industry, providing a data-driven basis for anticipating employment needs and effectively planning for seasonal variations. The identified increases and decreases in employment across specific quarters necessitate strategic planning and resource management to accommodate the cyclical nature of the industry's labor demands.</p>
 <p>The box-and-whisker plot lets us visualize this variation.</p>
-<p><img src="images/R-seasonal-trends.png" alt="seasonal-trends"></p>
+<p><img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/images/R-seasonal-trends.png" alt="seasonal-trends"></p>
 <p>The winter months seem to have lower median employment, but the third quarter shows the highest variation.</p>
   </div>
 </div>
@@ -587,7 +587,7 @@ p-value: 0.7759</p>
   theme_minimal()
 </code></pre>
 
-<p><img src="images/R-linear-regression.png" alt="linear-regression"></p>
+<p><img src="https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/images/R-linear-regression.png" alt="linear-regression"></p>
 
 <p>The gray band in the plot represents the confidence interval around the regression line. This confidence interval provides a range of values within which we can be 95% confident that the true regression line lies.</p>
 

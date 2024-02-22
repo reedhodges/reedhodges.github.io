@@ -9,4 +9,7 @@ I am a PhD student in the QCD Theory group at Duke University, with advisor Dr. 
 
 You can download a pdf of my resume [here](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/ReedHodges_Resume.pdf).
 
-**Featured**: a [portfolio project](sql-proj.markdown) using Python, SQL, and Tableau.
+**Featured**: 
+
+- a [portfolio project](sql-proj.markdown) using Python, SQL, and Tableau.
+- a [portfolio project](nc_labor_R_proj.markdown) using R.
