@@ -460,7 +460,7 @@ if (summary(anova_result)[[1]][["Pr(>F)"]][1] &lt; 0.05) {
 <pre><code class="r">library(ggplot2)
 library(dplyr)
 
-data <- read.csv("/Users/reedhodges/Documents/GitHub/nc_labor_data/qcew_data/data_annual.csv")
+data <- read.csv("filepath/data_annual.csv")
 
 # NAICS Code 11 (Agriculture, Forestry, Fishing and Hunting)
 industry_data <- filter(data, NAICS.Code == 11)
