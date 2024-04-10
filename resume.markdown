@@ -7,7 +7,7 @@ permalink: /resume/
 [PDF Form](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/ReedHodges_Resume.pdf)
 
 ### Skills
-Python, SQL, R, Pandas, NumPy, scikit-learn, C, C++, Tableau, Power BI, AWS, Fortran, HTML/CSS, GitHub, Bash, Linux/Unix, Microsoft Office, Mathematica, MATLAB, OpenMP, CUDA, Machine Learning
+Python, SQL (MySQL), R, C/C++, JavaScript, HTML, CSS, Fortran, Mathematica, MATLAB, Microsoft Excel, AWS, Git, GitHub, RStudio, Docker, Linux/Unix, Bash, Machine Learning, Deep Learning, Data Analysis, Data Visualization, Statistics, Hypothesis Testing
 
 <br>
 
