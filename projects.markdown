@@ -7,22 +7,30 @@ permalink: /projects/
 ### 1. [SQL, Python, and Tableau basketball stats project](sql-proj.markdown)
 A portfolio project where I generate statistics for a fake basketball league in Python, and run SQL queries against the resulting data.  The data is visualized in a Tableau story.
 
- [Github repository](https://github.com/reedhodges/bball_league)
+ [GitHub repository](https://github.com/reedhodges/bball_league)
 
 <br />
+
 
 ### 2. [R project on North Carolina employment trends](nc_labor_R_proj.markdown)
 A portfolio project where I use hypothesis testing in R to investigate various employment trends in the state of North Carolina from 1990 to 2022.
 
-[Github repository](https://github.com/reedhodges/nc_labor_data)
+[GitHub repository](https://github.com/reedhodges/nc_labor_data)
 
 <br />
 
-### 3. Transverse momentum dependence in J/psi production
+### 3. [Infection Simulator written with JavaScript](infection_simulator.markdown)
+An interactive web application developed using JavaScript, using Python (Flask) for the backend, where the user can see the effects of various parameters on the spread of an infectious disease.
+
+[GitHub repository](https://github.com/reedhodges/infection_simulator)
+
+<br />
+
+### 4. Transverse momentum dependence in J/psi production
 
 Collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen
 
-Github repositories: [[1](https://github.com/reedhodges/JPsi_TMDFFs), [2](https://github.com/reedhodges/JPsi_Production_NRQCD)]
+GitHub repositories: [[1](https://github.com/reedhodges/JPsi_TMDFFs), [2](https://github.com/reedhodges/JPsi_Production_NRQCD)]
 
 Links to papers: [[1](https://arxiv.org/pdf/2308.08605), [2](https://arxiv.org/pdf/2310.13737)]
  
@@ -32,11 +40,11 @@ Links to papers: [[1](https://arxiv.org/pdf/2308.08605), [2](https://arxiv.org/p
 
 <br />
 
-### 4. Decays of the exotic meson T<sub>cc</sub><sup>+</sup>
+### 5. Decays of the exotic meson T<sub>cc</sub><sup>+</sup>
 
 Collaborators: Lin Dai, Sean Fleming, Thomas Mehen
 
-Github repositories: [[1](https://github.com/reedhodges/tcc_decays_lo), [2](https://github.com/reedhodges/tcc_decays_nlo)]
+GitHub repositories: [[1](https://github.com/reedhodges/tcc_decays_lo), [2](https://github.com/reedhodges/tcc_decays_nlo)]
 
 Links to papers: [[1](https://arxiv.org/pdf/2109.02188), [2](https://arxiv.org/pdf/2301.11950)]
 
@@ -49,7 +57,7 @@ Academic research project that also resulted in two papers, on the decay of the 
 
 <br />
 
-### 5. Invisibility of a metamaterial microsphere
+### 6. Invisibility of a metamaterial microsphere
 
 Collaborators: Cleon Dean, Maxim Durach, Kelvin Rosado-Ayala
 

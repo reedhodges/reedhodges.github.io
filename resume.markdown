@@ -7,7 +7,7 @@ permalink: /resume/
 [PDF Form](https://raw.githubusercontent.com/reedhodges/reedhodges.github.io/main/ReedHodges_Resume.pdf)
 
 ### Skills
-Python, SQL, R, Pandas, NumPy, scikit-learn, C, C++, Tableau, Power BI, AWS, Fortran, HTML/CSS, Github, Bash, Linux/Unix, Microsoft Office, Mathematica, MATLAB, OpenMP, CUDA, Machine Learning
+Python, SQL, R, Pandas, NumPy, scikit-learn, C, C++, Tableau, Power BI, AWS, Fortran, HTML/CSS, GitHub, Bash, Linux/Unix, Microsoft Office, Mathematica, MATLAB, OpenMP, CUDA, Machine Learning
 
 <br>
 
@@ -16,7 +16,7 @@ Python, SQL, R, Pandas, NumPy, scikit-learn, C, C++, Tableau, Power BI, AWS, For
 **Graduate Research Assistant** <br>
 *Duke University / Durham, NC / 2018-present*
 - Analyzed large datasets from particle physics experiments using C++ and Python for use in theoretical modeling
-- Managed the publicly-available codebases on Github for 4 research projects, encouraging transparency and reproducibility
+- Managed the publicly-available codebases on GitHub for 4 research projects, encouraging transparency and reproducibility
 - Derived over 30 new mathematical functions to explain data from particle colliders
 - Collaborated with interdisciplinary teams to translate complex scientific concepts into accessible presentations, communicating the implications and applications of research findings at national and international meetings
 - Published 4 papers in top-ranked academic journals, playing a key role in research, writing, and presentation
