@@ -10,5 +10,5 @@
 
 ### more info...
 
-- [...on my work](my-work.md)
-- [...on my education](education.md)
+- [...on my work](my-work.md) 💼
+- [...on my education](my-education.md) 🎓
