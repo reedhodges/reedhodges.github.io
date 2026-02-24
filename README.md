@@ -1,3 +1,7 @@
+---
+title: home | reed hodges
+---
+
 ### ▶️ currently
 
 💻 software engineering at GitHub, focusing on data
