@@ -27,4 +27,5 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
 
 <details>
   <summary>description for non-physicists</summary>
+  Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called _quarks_ which are held together by _gluons_.  The physical theory that describes quarks and gluons is called _quantum chromodynamics_ (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called _effective field theories_ (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
 </details>
