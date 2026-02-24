@@ -2,7 +2,7 @@
 
 ### work at GitHub
 
-I am currently a software engineer in GitHub's data organization.
+I am currently a software engineer in GitHub's data organization.  My current tech stack includes Apache Airflow and Apache Spark for building data pipelines.  The languages I use the most are Python, SQL, and Scala.
 
 ### my physics work
 
@@ -23,9 +23,13 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
   - Demonstrated that a metamaterial microsphere consisting of concentric layers of gold and dielectric can be tuned to be invisible to visible light.
   - Collaborators: Maxim Durach, Kelvin Rosado-Ayala
 
+  <br>
+
 </details>
 
 <details>
   <summary>description for non-physicists</summary>
-  Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called _quarks_ which are held together by _gluons_.  The physical theory that describes quarks and gluons is called _quantum chromodynamics_ (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called _effective field theories_ (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
+  <br>
+  Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called quarks, which are held together by gluons.  The physical theory that describes quarks and gluons is called quantum chromodynamics (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called effective field theories (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
+  <br>
 </details>
