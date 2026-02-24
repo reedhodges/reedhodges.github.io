@@ -6,4 +6,9 @@
 
 ### ⏪ what I used to do:
 
-- ⚛️ [physics research](https://inspirehep.net/authors/1920819)
+- ⚛️ physics research
+
+### more info...
+
+- [...on my work](my-work.md)
+- [...on my education](education.md)
