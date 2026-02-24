@@ -10,9 +10,7 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
 
 <details>
   <summary>description for physicists</summary>
-  <br>
 
-  
 - T<sub>cc</sub><sup>+</sup> decays (collaborators: Lin Dai, Sean Fleming, Thomas Mehen)
   - Calculated the decay width of the exotic meson T<sub>cc</sub><sup>+</sup> to NLO in an effective field theory, treating it as a molecular state of two D mesons, and considering interactions with pions and photons.  The calculation was in excellent agreement with the spectra measured by LHCb, and the comparison of the calculated differential decay rates with data provided strong evidence for the interpretation of the T<sub>cc</sub><sup>+</sup> as a bound state of D mesons.
 
@@ -22,14 +20,11 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
 - Optical neutrality of a metamaterial microsphere (collaborators: Maxim Durach, Kelvin Rosado-Ayala)
   - Demonstrated that a metamaterial microsphere consisting of concentric layers of gold and dielectric can be tuned to be invisible to visible light.
 
-  <br>
-
 </details>
 
 <details>
   <summary>description for non-physicists</summary>
-  <br>
   
   Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called quarks, which are held together by gluons.  The physical theory that describes quarks and gluons is called quantum chromodynamics (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called effective field theories (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
-  <br>
+
 </details>
