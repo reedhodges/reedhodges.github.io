@@ -8,7 +8,7 @@
 
 - ⚛️ physics research
 
-### more info...
+### ℹ️ more info...
 
 - [...on my work](my-work.md) 💼
 - [...on my education](my-education.md) 🎓
