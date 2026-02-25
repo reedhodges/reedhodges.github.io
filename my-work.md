@@ -13,7 +13,7 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
   <br>
   <ul>
     <li>
-      <strong>T<sub>cc</sub><sup>+</sup> decays</strong> (collaborators: Lin Dai, Sean Fleming, Thomas Mehen)
+      <strong>T<sub>cc</sub><sup>+</sup> decays</strong> (collaborators: L Dai, S Fleming, T Mehen)
       <ul>
         <li>
           Calculated the decay width of the exotic meson 
@@ -29,7 +29,7 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
     </li>
     <li>
       <strong>Transverse-momentum-dependent (TMD) J/ψ production</strong> 
-      (collaborators: Marston Copeland, Sean Fleming, Rohit Gupta, Thomas Mehen)
+      (collaborators: M Copeland, S Fleming, R Gupta, T Mehen)
       <ul>
         <li>
           Derived polarized TMD fragmentation functions for light quarks and 
@@ -40,11 +40,14 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
     </li>
     <li>
       <strong>Optical neutrality of a metamaterial microsphere</strong> 
-      (collaborators: Maxim Durach, Kelvin Rosado-Ayala)
+      (collaborators: M Durach, K Rosado-Ayala)
       <ul>
         <li>
           Demonstrated that a metamaterial microsphere consisting of concentric 
           layers of gold and dielectric can be tuned to be invisible to visible light.
+        </li>
+        <li>
+          Ported Mathematica notebooks to Fortran to enable parallelized computation on the Blue Waters petascale supercomputer.
         </li>
       </ul>
     </li>
@@ -56,5 +59,6 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
   <summary>description for non-physicists</summary>
   <br>
   Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called quarks, which are held together by gluons.  The physical theory that describes quarks and gluons is called quantum chromodynamics (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called effective field theories (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
-
+<br>
+Prior to working in particle physics, I also wrote computer programs to model how extremely small, specially-designed materials behave when exposed to laser light.
 </details>
