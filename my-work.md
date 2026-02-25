@@ -28,23 +28,29 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
       </ul>
     </li>
     <li>
-      <strong>Transverse-momentum-dependent (TMD) J/ψ production</strong> 
+      <strong>TMD J/ψ production</strong> 
       (collaborators: M Copeland, S Fleming, R Gupta, T Mehen)
       <ul>
         <li>
-          Derived polarized TMD fragmentation functions for light quarks and 
-          gluons fragmenting to J/ψ by matching onto non-relativistic QCD, 
+          Derived polarized transverse-momentum-dependent (TMD) fragmentation functions for light quarks and 
+          gluons fragmenting to J/ψ by matching onto non-relativistic QCD (NRQCD), 
           which can be compared to experiments at the future Electron-Ion Collider.
+        </li>
+        <li>
+          Compared J/ψ production in SIDIS via quark fragmentation and photon-gluon fusion, to identify kinematic regimes which could be used to extract poorly-constrained NRQCD long-distance matrix elements.
+        </li>
+        <li>
+          Calculated power corrections due to soft gluon radiation in J/ψ production, identifying new NRQCD operators that mediate the transition from a color-octet cc&#773; pair to a color-singlet <sup>3</sup>S<sub>1</sub> state.
         </li>
       </ul>
     </li>
     <li>
-      <strong>Optical neutrality of a metamaterial microsphere</strong> 
+      <strong>Invisibility of a metamaterial sphere</strong> 
       (collaborators: M Durach, K Rosado-Ayala)
       <ul>
         <li>
           Demonstrated that a metamaterial microsphere consisting of concentric 
-          layers of gold and dielectric can be tuned to be invisible to visible light.
+          layers of gold and dielectric can be tuned to be invisible to light by varying the metal fraction.
         </li>
         <li>
           Ported Mathematica notebooks to Fortran to enable parallelized computation on the Blue Waters petascale supercomputer.
@@ -59,6 +65,6 @@ Prior to working in the tech industry, I conducted research in **theoretical nuc
   <summary>description for non-physicists</summary>
   <br>
   Particles like protons and neutrons, which make up every atom's nucleus, are themselves composed of tinier particles called quarks, which are held together by gluons.  The physical theory that describes quarks and gluons is called quantum chromodynamics (QCD).  Predicting the results of experiments at particle colliders using QCD is extremely difficult.  Instead, one can work with so-called effective field theories (EFTs), which are approximations to the "true" theory.  In my research, my collaborators and I used various different EFTs for QCD to predict the results of experiments.
-<br>
+<br> <br>
 Prior to working in particle physics, I also wrote computer programs to model how extremely small, specially-designed materials behave when exposed to laser light.
 </details>
