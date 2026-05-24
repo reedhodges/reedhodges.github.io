@@ -1,14 +1,13 @@
 ## homepage
 
-### ▶️ what I'm doing now:
-
-- 💻 software engineering at GitHub, focusing on data
-
-### ⏪ what I used to do:
-
-- ⚛️ physics research
-
-### ℹ️ more info...
-
-- [...on my work](my-work.md) 💼
-- [...on my education](my-education.md) 🎓
+<pre>
+├── ▶️ now/
+│   └── 💻 software engineering at GitHub
+│       └── <a href="github.md">more info</a>
+└── ⏪ prev/
+    ├── ⚛️ physics research
+    │   └── <a href="physics.md">more info</a>
+    └── 🎓 education/
+        ├── PhD in Physics, Duke Univ
+        └── BS in Physics, Georgia Southern Univ
+</pre>
