@@ -1,12 +1,4 @@
-## my work
-
-### 💻 my work at GitHub
-
-- I am currently a **software engineer in GitHub's data organization**
-- I use tools like **Apache Airflow** and **Apache Spark** for building data pipelines
-- The languages I use the most are **Python**, **SQL**, and **Scala**.
-
-### ⚛️ my physics work
+## ⚛️ my physics work
 
 Prior to working in the tech industry, I conducted research in **theoretical nuclear/particle physics** and **computational nanotechnology**.  Open the tabs below for summaries of the various projects I worked on, with descriptions for both physicists and non-physicists.  The corresponding publications can be viewed either on [my INSPIRE page](https://inspirehep.net/authors/1920819) (for nuclear/particle-physics-related work) or on [my Google Scholar page](https://scholar.google.com/citations?user=gZonGgEAAAAJ&hl=en&authuser=1) (for all the rest).
 
