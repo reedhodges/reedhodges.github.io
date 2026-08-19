@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ## 💻 my work at GitHub
 
 - I am currently a **software engineer in GitHub's data organization**
