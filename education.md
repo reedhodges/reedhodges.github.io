@@ -2,7 +2,7 @@
 layout: default
 ---
 
-## Education
+## 🎓 education
 
 **PhD in Physics**  
 Duke University  

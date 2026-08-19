@@ -87,7 +87,6 @@ h6 {
   margin-bottom: 0.5em;
   font-weight: 600;
   line-height: 1.3;
-  font-family: "Georgia", "Garamond", serif;
   color: var(--color-text-primary);
 }
 
@@ -351,7 +350,6 @@ section > p {
 .hero h1 {
   font-size: 2.2em;
   margin-bottom: 0.5em;
-  font-family: "Georgia", "Garamond", serif;
 }
 
 .hero p {
@@ -396,7 +394,6 @@ section > p {
   margin-top: 0;
   color: var(--color-accent);
   margin-bottom: 0.8rem;
-  font-family: "Georgia", "Garamond", serif;
 }
 
 .card p {
@@ -462,7 +459,6 @@ summary {
   padding: 10px 0;
   user-select: none;
   transition: all 0.2s ease;
-  font-family: "Georgia", "Garamond", serif;
 }
 
 summary:hover {
