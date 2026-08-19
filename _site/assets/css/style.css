@@ -427,6 +427,36 @@ section > p {
 }
 
 /* ============================================
+   Research Projects
+   ============================================ */
+
+.research-project {
+  border-left: 3px solid #10b981;
+  padding-left: 20px;
+  margin-bottom: 2.5em;
+  animation: fadeIn 0.8s ease;
+}
+
+.research-project h4 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  color: var(--color-text-primary);
+  font-size: 1.1em;
+}
+
+.research-project .collaborators {
+  font-size: 0.9em;
+  color: var(--color-text-secondary);
+  margin-bottom: 1em;
+  font-style: italic;
+}
+
+.research-project > p {
+  margin-bottom: 1em;
+  line-height: 1.8;
+}
+
+/* ============================================
    Lists
    ============================================ */
 

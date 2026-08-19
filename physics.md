@@ -18,53 +18,27 @@ Select descriptions below for technical details or lay explanations.
 <details>
   <summary>description for physicists</summary>
   <br>
-  <ul>
-    <li>
-      <strong>T<sub>cc</sub><sup>+</sup> decays</strong> (collaborators: L Dai, S Fleming, T Mehen)
-      <ul>
-        <li>
-          Calculated the decay width of the exotic meson 
-          T<sub>cc</sub><sup>+</sup> to NLO in an effective field theory, 
-          treating it as a molecular state of two D mesons, and considering 
-          interactions with pions and photons. The calculation was in excellent 
-          agreement with the spectra measured by LHCb, and the comparison of the 
-          calculated differential decay rates with data provided strong evidence 
-          for the interpretation of the T<sub>cc</sub><sup>+</sup> as a bound state 
-          of D mesons.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>TMD J/ψ production</strong> 
-      (collaborators: M Copeland, S Fleming, R Gupta, T Mehen)
-      <ul>
-        <li>
-          Derived polarized transverse-momentum-dependent (TMD) fragmentation functions for light quarks and 
-          gluons fragmenting to J/ψ by matching onto non-relativistic QCD (NRQCD), 
-          which can be compared to experiments at the future Electron-Ion Collider.
-        </li>
-        <li>
-          Compared J/ψ production in SIDIS via quark fragmentation and photon-gluon fusion, to identify kinematic regimes which could be used to extract poorly-constrained NRQCD long-distance matrix elements.
-        </li>
-        <li>
-          Calculated power corrections due to soft gluon radiation in J/ψ production, identifying new NRQCD operators that mediate the transition from a color-octet cc&#773; pair to a color-singlet <sup>3</sup>S<sub>1</sub> state.
-        </li>
-      </ul>
-    </li>
-    <li>
-      <strong>Invisibility of a metamaterial sphere</strong> 
-      (collaborators: M Durach, K Rosado-Ayala)
-      <ul>
-        <li>
-          Demonstrated that a metamaterial microsphere consisting of concentric 
-          layers of gold and dielectric can be tuned to be invisible to light by varying the metal fraction.
-        </li>
-        <li>
-          Ported Mathematica notebooks to Fortran to enable parallelized computation on the Blue Waters petascale supercomputer.
-        </li>
-      </ul>
-    </li>
-  </ul>
+
+<div class="research-project">
+  <h4>T<sub>cc</sub><sup>+</sup> decays</h4>
+  <p class="collaborators">Collaborators: L Dai, S Fleming, T Mehen</p>
+  <p>Calculated the decay width of the exotic meson T<sub>cc</sub><sup>+</sup> to NLO in an effective field theory, treating it as a molecular state of two D mesons, and considering interactions with pions and photons. The calculation was in excellent agreement with the spectra measured by LHCb, and the comparison of the calculated differential decay rates with data provided strong evidence for the interpretation of the T<sub>cc</sub><sup>+</sup> as a bound state of D mesons.</p>
+</div>
+
+<div class="research-project">
+  <h4>TMD J/ψ production</h4>
+  <p class="collaborators">Collaborators: M Copeland, S Fleming, R Gupta, T Mehen</p>
+  <p>Derived polarized transverse-momentum-dependent (TMD) fragmentation functions for light quarks and gluons fragmenting to J/ψ by matching onto non-relativistic QCD (NRQCD), which can be compared to experiments at the future Electron-Ion Collider.</p>
+  <p>Compared J/ψ production in SIDIS via quark fragmentation and photon-gluon fusion, to identify kinematic regimes which could be used to extract poorly-constrained NRQCD long-distance matrix elements.</p>
+  <p>Calculated power corrections due to soft gluon radiation in J/ψ production, identifying new NRQCD operators that mediate the transition from a color-octet cc&#773; pair to a color-singlet <sup>3</sup>S<sub>1</sub> state.</p>
+</div>
+
+<div class="research-project">
+  <h4>Invisibility of a metamaterial sphere</h4>
+  <p class="collaborators">Collaborators: M Durach, K Rosado-Ayala</p>
+  <p>Demonstrated that a metamaterial microsphere consisting of concentric layers of gold and dielectric can be tuned to be invisible to light by varying the metal fraction.</p>
+  <p>Ported Mathematica notebooks to Fortran to enable parallelized computation on the Blue Waters petascale supercomputer.</p>
+</div>
 
 </details>
 
