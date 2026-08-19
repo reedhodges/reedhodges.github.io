@@ -9,6 +9,14 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
+    <!-- Theme initialization script (runs before page renders to prevent flash) -->
+    <script>
+      (function() {
+        const stored = localStorage.getItem('theme-preference');
+        const theme = stored || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <!-- Theme Toggle Button -->
@@ -24,7 +32,9 @@
 
         <p><hodges.reed@gmail.com></p>
 
-        
+        <p class="view">GitHub: <a href="https://github.com/reedhodges">@reedhodges</a></p>
+
+        <img src="/pic.jpg" alt="Profile picture" class="profile-pic" />
       </header>
       <section>
 
