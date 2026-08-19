@@ -41,7 +41,31 @@
       </header>
       <section>
 
-      {{ content }}
+      <!-- Hero Section -->
+      <div class="hero">
+        <p>Software engineer in GitHub's data organization. Previously a physics researcher.</p>
+      </div>
+
+      <!-- Content Cards -->
+      <div class="card-grid">
+        <a href="{{ "/github.html" | relative_url }}" class="card fade-in">
+          <h3>💻 Current Work</h3>
+          <p>Data pipelines with Apache Airflow and Spark. Python, SQL, Scala.</p>
+          <span class="card-link">Learn more</span>
+        </a>
+
+        <a href="{{ "/physics.html" | relative_url }}" class="card fade-in">
+          <h3>⏪ Physics Research</h3>
+          <p>Theoretical nuclear/particle physics and computational nanotechnology.</p>
+          <span class="card-link">View research</span>
+        </a>
+
+        <a href="{{ "/education.html" | relative_url }}" class="card fade-in">
+          <h3>🎓 Education</h3>
+          <p>PhD in Physics from Duke University. BS in Physics from Georgia Southern University.</p>
+          <span class="card-link">View details</span>
+        </a>
+      </div>
 
       </section>
     </div>
